@@ -8,8 +8,11 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 passport = require('passport'),
 secret = require('./config/secret');
+path = require('path');
 
 const app = express();
+
+// // mongoose.connect(secret.database, (err)=>{
 mongoose.connect(secret.database, (err)=>{
     if(err){
         console.log(err.message)
@@ -32,6 +35,13 @@ app.use(passport.session());
 
 /*Routes*/
 require('./routes/auth.route')(app);
+var categoryRoutes = require('./routes/category.routes');
+var articleRoutes = require('./routes/articles.routes');
+
+//Using the endpoint results.
+// app.use(userRoutes);
+app.use(categoryRoutes);
+app.use(articleRoutes);
 
 app.listen(secret.port, ()=>{
     console.log("listening on" + secret.port);

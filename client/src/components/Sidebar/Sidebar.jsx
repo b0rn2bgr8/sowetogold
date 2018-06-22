@@ -1,13 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink ,Link} from 'react-router-dom';
 import { Nav } from 'reactstrap';
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
-
 import logo from "logo-white.svg";
-
+import Logo from '../../images/logo.png';
 var ps;
-
 class Sidebar extends React.Component{
     constructor(props){
         super(props);
@@ -31,14 +29,15 @@ class Sidebar extends React.Component{
         return (
             <div className="sidebar" data-color="red">
                 <div className="logo">
-                	<a href="/" className="simple-text logo-mini">
-                        <div className="logo-img">
-                            <img src={logo} alt="react-logo" />
-                        </div>
-                	</a>
-                	<a href="/" className="simple-text logo-normal">
-                		Soweto Observer
-                	</a>
+
+                    <Link to="/admin/" className="simple-text logo-mini">
+                            <div className="logo-img">
+                            <img src={Logo} alt="Soweto-logo" />
+                            </div>
+                    </Link>
+                    <Link to="/admin/" className="simple-text logo-normal">
+                    Soweto Observer 
+                    </Link>
                 </div>
                 <div className="sidebar-wrapper" ref="sidebar">
                     <Nav>
@@ -62,5 +61,4 @@ class Sidebar extends React.Component{
         );
     }
 }
-
 export default Sidebar;

@@ -1,18 +1,11 @@
 import React from 'react';
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
-import {
-    Route,
-    Switch,
-    Redirect
-} from 'react-router-dom';
-
+import {Route,Switch,Redirect} from 'react-router-dom';
 import { Header, Footer, Sidebar } from 'components'
-
 import dashboardRoutes from 'routes/dashboard.jsx';
 
 var ps;
-
 class Dashboard extends React.Component{
     componentDidMount(){
         if(navigator.platform.indexOf('Win') > -1){
@@ -32,39 +25,26 @@ class Dashboard extends React.Component{
         document.scrollingElement.scrollTop = 0;
       }
     }
+    
     render(){
-        console.log(dashboardRoutes)
+        //console.log(dashboardRoutes)
         return (
             <div className="wrapper">
                 <Sidebar {...this.props} routes={dashboardRoutes}/>
                 <div className="main-panel" ref="mainPanel">
-                    <Header {...this.props}/>
-                    <Switch>
+                    <Header {...this.props} />
                         {
                             dashboardRoutes.map((prop,key) => {
-                                if(prop.collapse){
-                                    return prop.views.map((prop2,key2) => {
-                                       
-                                        return (
-                                            <Route path={prop2.path} exact={prop2.exact} component={prop2.component} key={key2}/>
-                                        );
-                                    })
-                                }
-                                if(prop.redirect)
-                                    return (
-                                        <Redirect from={prop.path} to={prop.pathTo} key={key}/>
-                                    );
+                              
                                 return (
-                                    <Route path={prop.path} component={prop.component} key={key}/>
+                                    <Route path={prop.path} exact={prop.exact} component={prop.component} key={key}/>
                                 );
                             })
                         }
-                    </Switch>
-                    <Footer fluid/>
+                      
                 </div>
             </div>
         );
     }
 }
-
 export default Dashboard;
