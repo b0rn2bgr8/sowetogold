@@ -1,22 +1,10 @@
 import React from 'react';
-import {
-    Card, CardHeader, CardBody, CardFooter, CardTitle, Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table,
-} from 'reactstrap';
+import {Card, CardHeader, CardBody, CardFooter, CardTitle, Row, Col, Table,} from 'reactstrap';
 // react plugin used to create charts
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 // function that returns a color based on an interval of numbers
-
-import {
-    PanelHeader, Stats, CardCategory, Tasks
-} from 'components';
-
-import {
-    dashboardPanelChart,
-    dashboardShippedProductsChart,
-    dashboardAllProductsChart,
-    dashboard24HoursPerformanceChart
-} from 'variables/charts.jsx';
-
+import { PanelHeader, Stats, Tasks} from 'components';
+import {dashboardPanelChart,} from 'variables/charts.jsx';
 import { tasks } from 'variables/general.jsx';
 
 class Dashboard extends React.Component{
@@ -34,24 +22,11 @@ class Dashboard extends React.Component{
                         <Col xs={12} md={4}>
                             <Card className="card-chart">
                                 <CardHeader>
-                                    <CardCategory>Global Sales</CardCategory>
-                                    <CardTitle>Shipped Products</CardTitle>
-                                    <UncontrolledDropdown>
-                                        <DropdownToggle className="btn-round btn-simple btn-icon" color="default">
-                                            <i className="now-ui-icons loader_gear"></i>
-                                        </DropdownToggle>
-                                        <DropdownMenu right>
-                                            <DropdownItem>Action</DropdownItem>
-                                            <DropdownItem>Another Action</DropdownItem>
-                                            <DropdownItem>Something else here</DropdownItem>
-                                            <DropdownItem className="text-danger">Remove data</DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
+                                    <CardTitle>Number of articles</CardTitle>
+                                    <hr />
                                 </CardHeader>
                                 <CardBody>
-                                    <div className="chart-area">
-                                        <Line data={dashboardShippedProductsChart.data} options={dashboardShippedProductsChart.options} />
-                                    </div>
+                                    <h6>58 published</h6>
                                 </CardBody>
                                 <CardFooter>
                                     <Stats>
@@ -65,24 +40,11 @@ class Dashboard extends React.Component{
                         <Col xs={12} md={4}>
                             <Card className="card-chart">
                                 <CardHeader>
-                                    <CardCategory>2018 Sales</CardCategory>
-                                    <CardTitle>All products</CardTitle>
-                                    <UncontrolledDropdown>
-                                        <DropdownToggle className="btn-round btn-simple btn-icon" color="default">
-                                            <i className="now-ui-icons loader_gear"></i>
-                                        </DropdownToggle>
-                                        <DropdownMenu right>
-                                            <DropdownItem>Action</DropdownItem>
-                                            <DropdownItem>Another Action</DropdownItem>
-                                            <DropdownItem>Something else here</DropdownItem>
-                                            <DropdownItem className="text-danger">Remove data</DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
+                                    <CardTitle>Number of users online</CardTitle>
+                                    <hr />
                                 </CardHeader>
                                 <CardBody>
-                                    <div className="chart-area">
-                                        <Line data={dashboardAllProductsChart.data} options={dashboardAllProductsChart.options} />
-                                    </div>
+                                        <h6>1 542 users online</h6>
                                 </CardBody>
                                 <CardFooter>
                                     <Stats>
@@ -96,13 +58,11 @@ class Dashboard extends React.Component{
                         <Col xs={12} md={4}>
                             <Card className="card-chart">
                                 <CardHeader>
-                                    <CardCategory>Email Statistics</CardCategory>
-                                    <CardTitle>24 Hours Performance</CardTitle>
+                                    <CardTitle>Adverts posted</CardTitle>
+                                    <hr />
                                 </CardHeader>
                                 <CardBody>
-                                    <div className="chart-area">
-                                        <Bar data={dashboard24HoursPerformanceChart.data} options={dashboard24HoursPerformanceChart.options} />
-                                    </div>
+                                        <h6>12 adverts posted</h6>
                                 </CardBody>
                                 <CardFooter>
                                     <Stats>
@@ -114,6 +74,7 @@ class Dashboard extends React.Component{
                             </Card>
                         </Col>
                     </Row>
+
                     <Row>
                       <Col xs={12} md={6}>
                         <Card className="card-tasks">

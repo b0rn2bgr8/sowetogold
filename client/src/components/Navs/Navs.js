@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+import {Collapse,Navbar,NavbarToggler, NavbarBrand,Nav,NavItem,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
 export default class Navs extends React.Component {
@@ -45,7 +35,7 @@ export default class Navs extends React.Component {
               </NavItem>}
               {this.props.user && <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  <img src={this.props.user.picture} style={{height: 20, width: 'auto', borderRadius: 30}} /> {this.props.user.displayName}
+                  <img src={this.props.user.picture} alt="not supported" style={{height: 20, width: 'auto', borderRadius: 30}} /> {this.props.user.displayName}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
