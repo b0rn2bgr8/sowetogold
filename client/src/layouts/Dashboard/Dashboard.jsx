@@ -27,7 +27,6 @@ class Dashboard extends React.Component{
     }
     
     render(){
-        //console.log(dashboardRoutes)
         return (
             <div className="wrapper">
                 <Sidebar {...this.props} routes={dashboardRoutes}/>

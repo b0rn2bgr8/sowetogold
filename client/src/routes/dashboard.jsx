@@ -15,6 +15,6 @@ var dashRoutes = [
     { path: "/admin/extended-tables", name: "Table List", icon: "files_paper", exact: false,  component: TableList },
     { path: "/admin/typography", name: "Typography", icon: "design-2_ruler-pencil", exact: false,  component: Typography },
     
-    { redirect: true, path: "/admin/", pathTo: "/admin/", name: "Dashboard" }
+    //{ redirect: true, path: "/admin/", pathTo: "/admin/", name: "Dashboard" }
 ];
 export default dashRoutes;
