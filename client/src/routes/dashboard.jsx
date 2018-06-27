@@ -5,7 +5,7 @@ import Notifications from 'views/Notifications/Notifications.jsx';
 import Typography from 'views/Typography/Typography.jsx';
 
 var dashRoutes = [
-    { path: "/admin", name: "Dashboard", icon: "business_chart-bar-32", exact: true, component: Dashboard},
+    { path: "/admin", name: "Statistics", icon: "business_chart-bar-32", exact: true, component: Dashboard},
     { path: "/admin/Articles", name: "Articles", icon: "education_paper", exact: false,  component: Articles },
     { path: "/admin/notifications", name: "Manage ads", icon: "files_single-copy-04", exact: false, component: Notifications },
     { path: "/admin/user-page", name: "Users", icon: "users_single-02", exact: false,  component: UserPage },

@@ -6,6 +6,13 @@ import { PanelHeader } from 'components';
 
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
+//Loading spinner
+import MDSpinner from "react-md-spinner";
+import moment from 'moment';
+
+const style = {
+  paddingLeft: "50%"
+}
 
 class Articles extends React.Component{
       constructor(){
@@ -15,8 +22,7 @@ class Articles extends React.Component{
           article: false,
           category:false,
           author:false,
-          isOpe:false,
-          isloading: false
+          isOpen:false,
         }
     }
     //Components
@@ -31,25 +37,50 @@ class Articles extends React.Component{
       this.setState({ isOpen: true })
     }
     render(){
-      const {data, isloading} = this.state;
       const { articles } = this.props;
-
       const columns = [{
-        Header: '#',
-        accessor: '#' // String-based value accessors!
+        Header: "#",
+        id: "row",
+        maxWidth:50,
+        filterable:false,
+        Cell:(row) => {
+          return <div>{row.index+1}</div>
+        }
       }, {
         Header: 'Title',
         accessor: 'title',
       }, {
         Header: 'Body',
         accessor: 'body',
-      }, ]
-     
-      
-      console.log(this.props);
-      console.log("testing for data")
-      
-    // this.log("my articles",this.props.article);
+      },{
+         Header: 'Picture',
+         //accessor: '',
+       },{
+         Header: 'Category',
+         row: "row",
+         filterable:false,
+         Cell:(row) =>{
+           return <div>{row._id}</div>
+         }
+         /*<td>{(article.category.length > 0) ? article.category[0].name : 'N/A'}</td>*/
+         //articles.Category.name
+       },{
+         Header: "Status",
+         //accessor:"",
+       },
+       {
+        Header: 'Date posted',
+        accessor: "createdAt",
+       },
+      //  {
+      //    Header:'Date updated',
+      //    accesor:"updatedAt",
+      //  },
+       {
+        Header: 'Action',
+        //accessor: '',
+       }]
+      console.log("Categories",this.props.articles.category);
         return (
           <div>
             <PanelHeader size="sm" />
@@ -61,17 +92,30 @@ class Articles extends React.Component{
                       <Row>
                           <Col xs="6"><h4>Articles posted </h4></Col>
                        </Row>
-                       <Col xs="6"><Button color="primary" onClick={()=> this.onSubmit()}>Add new article</Button></Col>
+                       <Col  xs="6"><Button color="primary" onClick={()=> this.onSubmit()}>Add new article</Button></Col>
                       </CardHeader>
                     <hr />
-
+                    
                     <CardBody>
                       {articles ? 
                         <ReactTable
-                        data={articles}
-                        columns={columns}
-                      /> :
-                      "is Loading...."
+                          defaultPageSize={5}
+                          data={articles}
+                          resolveData={data => data.map(row => {
+                            //row.createdAt = Date(row.createdAt);
+                            //moment().format('llll');
+                            row.createdAt = moment(row.createdAt).format('MMM Do YYYY, h:mm a');
+                            row.category.forEach(el => {
+                              console.log(el)
+                            });
+
+                            return row;
+                          })}
+                          columns={columns}
+                         /> :
+                        <div style={style}>
+                            <MDSpinner size="100" />
+                        </div>
                       }
                     </CardBody>
                   </Card>
