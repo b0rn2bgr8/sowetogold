@@ -5,7 +5,7 @@ const articleSchema = new Schema({
     title: { type: String },
     // picture: { type: String },
     body: { type: String },
-    isDraft: { type: Boolean, default: false },
+    isDraft: { type: Boolean, default: true },
     author: [{ type: Schema.Types.ObjectId, ref: "User" }],
     category: [{ type: Schema.Types.ObjectId, ref: "Category" }],
 }, { timestamps: { createdAt: 'createdAt' } });

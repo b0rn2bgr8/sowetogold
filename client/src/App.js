@@ -18,7 +18,7 @@ class App extends Component {
             <Route {...rest} render={(props) => (
               (this.props.user.role === "admin")
                 ?  <Component  {...props} /> 
-                : <Redirect to='/admin' />
+                : <Redirect to='/admin/' />
             )} />
           );
 

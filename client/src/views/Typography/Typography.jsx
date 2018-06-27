@@ -12,11 +12,11 @@ class Typography extends React.Component{
                         <Col md={12}>
                             <Card>
                                 <CardHeader>
-                                    <h5 className="title">Users in our system</h5>
+                                    <h5 className="title">Videos in our system</h5>
+                                    <hr />
                                 </CardHeader>
                                 <CardBody>
-                                    <h1>The body will be here</h1>
-
+                                    <h1>The body videos will be here</h1>
                                 </CardBody>
                             </Card>
                         </Col>

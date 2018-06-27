@@ -13,7 +13,7 @@ path = require('path');
 const app = express();
 
 // // mongoose.connect(secret.database, (err)=>{
-mongoose.connect(secret.database, (err)=>{
+mongoose.connect('mongodb://soweto_observer_db:123456@ds233320.mlab.com:33320/soweto_observer_db', (err)=>{
     if(err){
         console.log(err.message)
     }
@@ -44,5 +44,5 @@ app.use(categoryRoutes);
 app.use(articleRoutes);
 
 app.listen(secret.port, ()=>{
-    console.log("listening on" + secret.port);
+    console.log("listening on port " + secret.port);
 });

@@ -28,7 +28,7 @@ class Sidebar extends React.Component{
         return (
             <div className="sidebar" data-color="blue">
                 <div className="logo">
-                    <Link to="/admin/" className="simple-text logo-mini">
+                    <Link to="/admin" className="simple-text logo-mini">
                             <div className="logo-img">
                             <img src={Logo} alt="Soweto-logo" />
                             </div>
