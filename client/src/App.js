@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router,Route,Redirect } from 'react-router-dom';
 import Home from './views/Home/Home';
-
 import Admin from './layouts/Dashboard/Dashboard';
-
 import Navs from './components/Navs/Navs';
 import * as actions from './actions';
 import {connect} from 'react-redux';
-// import indexRoutes from 'routes/index.jsx';
 
 class App extends Component {
     componentDidMount(){
@@ -29,6 +26,7 @@ class App extends Component {
                         <Navs user={this.props.user} />
                         <Route path="/" exact component={Home} />
                         <AdminRoute path="/admin" component={Admin} />
+                        
                     </div>
                 </Router>
             </div>

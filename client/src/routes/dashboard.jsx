@@ -1,15 +1,15 @@
-import Dashboard from 'views/Dashboard/Dashboard.jsx';
+import Statistics from 'views/Statistics/Statistics.jsx';
 import Articles from 'views/Articles/Articles.jsx';
-import UserPage from 'views/UserPage/UserPage.jsx';
-import Notifications from 'views/Notifications/Notifications.jsx';
-import Typography from 'views/Typography/Typography.jsx';
+import Category from 'views/Category/Category.jsx';
+import advertisements from 'views/advertisements/advertisements.jsx';
+import Videos from 'views/Videos/Videos.jsx';
 
 var dashRoutes = [
-    { path: "/admin", name: "Statistics", icon: "business_chart-bar-32", exact: true, component: Dashboard},
-    { path: "/admin/Articles", name: "Articles", icon: "education_paper", exact: false,  component: Articles },
-    { path: "/admin/notifications", name: "Manage ads", icon: "files_single-copy-04", exact: false, component: Notifications },
-    { path: "/admin/user-page", name: "Users", icon: "users_single-02", exact: false,  component: UserPage },
-    { path: "/admin/typography", name: "Videos", icon: "media-1_button-play",exact: false, component: Typography },
+    { path: "/admin/", name: "Statistics", icon: "business_chart-bar-32", exact: true, component: Statistics},
+    { path: "/admin/articles", name: "Articles", icon: "education_paper", exact: false,  component: Articles },
+    { path: "/admin/manage_category", name: "Manage Category", icon: "design_bullet-list-67", exact: false,  component: Category },
+    { path: "/admin/manage_advertisements", name: "Manage ads", icon: "files_single-copy-04", exact: false, component: advertisements },
+    { path: "/admin/videos", name: "Videos", icon: "media-1_button-play",exact: false, component: Videos },
     // { redirect: true, path: "/admin/", pathTo: "/admin/",  name: "Dashboard" }
 ];
 export default dashRoutes;

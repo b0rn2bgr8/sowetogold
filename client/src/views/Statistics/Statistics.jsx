@@ -1,12 +1,12 @@
 import React from 'react';
-import {Card, CardHeader, CardBody, CardFooter, CardTitle, Row, Col, Table,} from 'reactstrap';
+import {Card, CardHeader, CardBody, CardFooter, CardTitle, Row, Col} from 'reactstrap';
 // react plugin used to create charts
 import { Line } from 'react-chartjs-2';
 // function that returns a color based on an interval of numbers
-import { PanelHeader, Stats, Tasks} from 'components';
+import { PanelHeader, Stats} from 'components';
 import {dashboardPanelChart,} from 'variables/charts.jsx';
 
-class Dashboard extends React.Component{
+class Statistics extends React.Component{
     render(){
         return (
             <div>
@@ -79,4 +79,4 @@ class Dashboard extends React.Component{
     }
 }
 
-export default Dashboard;
+export default Statistics;

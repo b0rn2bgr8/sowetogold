@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardHeader, CardBody, Row, Col} from 'reactstrap';
 import { PanelHeader } from 'components';
 
-class Typography extends React.Component{
+class Videos extends React.Component{
     render(){
         return (
             <div>
@@ -27,4 +27,4 @@ class Typography extends React.Component{
     }
 }
 
-export default Typography;
+export default Videos;

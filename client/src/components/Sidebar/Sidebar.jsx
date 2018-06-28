@@ -27,16 +27,16 @@ class Sidebar extends React.Component{
     render(){
         return (
             <div className="sidebar" data-color="orange">
-                <div className="logo">
-                    <Link to="/admin" className="simple-text logo-mini">
+                <div className="simple-text logo-normal">
+                    <div className="logo">
+                        <Link to="/admin" className="#">
                             <div className="logo-img">
-                            <img src={Logo} alt="Soweto-logo" />
+                                <img src={Logo} alt="Soweto-logo" />
                             </div>
-                    </Link>
-                    <Link to="/admin" className="simple-text logo-normal">
-                    Soweto Observer 
-                    </Link>
+                        </Link>
+                    </div>
                 </div>
+                
                 <div className="sidebar-wrapper" ref="sidebar">
                     <Nav>
                         {
