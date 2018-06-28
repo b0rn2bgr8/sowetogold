@@ -6,29 +6,42 @@ import { PanelHeader } from 'components';
 class Category extends React.Component{
     render(){
         const data = [{
-            name: '1',
-            age: 26,
-            friend: {
-              name: 'Jason Maurer',
-              age: 23,
-            }
+            id: '1',
+            category: 'Sports',
+            description: 'Soccer',
+            date_posted: '28 June 2018',
+            action: ' '
+            // friend: {
+            //   name: 'Jason Maurer',
+            //   age: 23,}
           }]
           const columns = [{
             Header: '#',
-            accessor: 'name', // String-based value accessors!
+            accessor: 'id', // String-based value accessors!
             maxWidth:50
           }, {
+            Header: 'Description',
+            accessor: 'description'
+          }, {
             Header: 'Category',
-            accessor: 'age',
+            accessor: 'category',
             Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
           }, {
-            id: 'friendName', // Required because our accessor is not a string
-            Header: 'Friend Name',
-            accessor: d => d.friend.name // Custom value accessors!
+              Header: 'Date posted',
+              accessor: 'date_posted'
           }, {
-            Header: props => <span>Friend Age</span>, // Custom header components!
-            accessor: 'friend.age'
-          }]
+            Header: 'Action',
+            accessor: 'action'
+          }
+        //   {
+        //     id: 'friendName', // Required because our accessor is not a string
+        //     Header: 'Friend Name',
+        //     accessor: d => d.friend.name // Custom value accessors!
+        //   }, {
+        //     Header: props => <span>Friend Age</span>, // Custom header components!
+        //     accessor: 'friend.age'
+        //   }
+        ]
         
         return (
             <div>
@@ -37,10 +50,7 @@ class Category extends React.Component{
                     <Row>
                         <Col md={6} xs={12}>
                             <Card>
-                                <CardHeader>
-                                    <Row>
-                                        <Col xs="6"><h4>Add new category </h4></Col>
-                                    </Row>
+                                <CardHeader><h4>Add a new category </h4>
                                 </CardHeader>
                                 <hr />
                                 <CardBody>
@@ -70,7 +80,7 @@ class Category extends React.Component{
                              <Card>
                                 <CardHeader>
                                     <Row>
-                                        <Col xs="6"><h4>All categories...</h4></Col>
+                                        <Col xs="6"><h4>All categories</h4></Col>
                                     </Row>
                                 </CardHeader>
                                     <hr />

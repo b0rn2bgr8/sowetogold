@@ -2,6 +2,7 @@ import React from 'react';
 import {Card, CardTitle, CardBody, CardHeader, Row, Col,Form,FormGroup,Input,Label,FormText} from 'reactstrap';
 // react plugin for creating notifications over the dashboard
 import NotificationAlert from 'react-notification-alert';
+import ReactTable from "react-table";
 import { PanelHeader, Button } from 'components';
 
 class advertisements extends React.Component{
@@ -12,6 +13,36 @@ class advertisements extends React.Component{
         };
     }
     render(){
+        const data = [{
+            id: '1',
+            title: 'Old Mutual',
+            picture: '.jpg',
+            body: 'This is the body of  the ad',
+            date_posted: '28 June 2018',
+            action: ' '
+          }]
+          const columns = [{
+            Header: '#',
+            accessor: 'id', // String-based value accessors!
+            maxWidth:50
+          }, {
+            Header: 'Title',
+            accessor: 'title'
+          }, {
+            Header: 'Picture',
+            accessor: 'picture',
+            Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+          }, {
+            Header: 'Body',
+            accessor: 'body',
+          },{
+              Header: 'Date posted',
+              accessor: 'date_posted'
+          }, {
+            Header: 'Action',
+            accessor: 'action'
+          }]
+
         return (
             <div>             
             <PanelHeader size="sm" />
@@ -21,7 +52,7 @@ class advertisements extends React.Component{
                         <Col md={6} xs={12}>
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Insert new advertisement</CardTitle>
+                                    <CardTitle>Add a new advertisement</CardTitle>
                                 </CardHeader>
                                 <hr />
 
@@ -31,11 +62,13 @@ class advertisements extends React.Component{
                                         <Label for="title">Advert Summary : </Label>
                                             <Input type="text" name="text" id="text" placeholder="Advertisement summary ..." required />
                                     </FormGroup>
+                                    <br/>
 
                                     <FormGroup>
                                         <Label for="body">Advert body</Label>
                                             <Input type="textarea" name="textarea" id="textarea" required/>
                                     </FormGroup>
+                                    <br/>
 
                                     <FormGroup>
                                         <Label for="File">File</Label>
@@ -56,15 +89,20 @@ class advertisements extends React.Component{
                             </CardBody>
                             </Card>
                         </Col>
+
                         <Col md={6} xs={12}>
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>advertisement on our system</CardTitle>
+                                    <CardTitle>All advertisment</CardTitle>
                                 </CardHeader>
                                 <hr />
 
                                 <CardBody>
-                                    <h3>advertisement table will be here</h3>
+                                <ReactTable
+                                       defaultPageSize={5}
+                                        data={data}
+                                        columns={columns}
+                                    /> 
                                 </CardBody>
                             </Card>
                         </Col>
