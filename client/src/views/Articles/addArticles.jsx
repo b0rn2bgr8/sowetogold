@@ -16,6 +16,7 @@ class Forms extends React.Component{
             title: "",
             body: "",
             picture: "",
+            category:false,
         }
         //binding
         this.onHandleChange = this.onHandleChange.bind(this);
@@ -30,7 +31,7 @@ class Forms extends React.Component{
     //Fetching redux data
     componentDidMount(){
         this.props.fetchCategory();
-        //this.props.fetchArticles();
+        this.props.fetchArticles();
       }
     //Request to the database
             async handleSubmit() {
@@ -93,7 +94,8 @@ class Forms extends React.Component{
                                     <FormGroup row>
                                         <Label for="textarea" sm={2}>Article body : </Label>
                                             <Col sm={10}>
-                                                <ReactQuill 
+                                                <ReactQuill theme="snow"
+                                                    
                                                     modules={Forms.modules}
                                                     formats={Forms.formats}
                                                     value={this.state.body}
@@ -129,6 +131,8 @@ class Forms extends React.Component{
                         </Col>
                     </Row>
                 </div>
+                <br />
+                
             </div>
         );
     }
