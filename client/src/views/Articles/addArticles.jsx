@@ -1,12 +1,59 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import renderHTML from 'react-render-html';
 import { Card, CardBody, CardHeader, CardTitle, Row, Col,Button,Form,FormGroup, Label,Input, FormText } from 'reactstrap';
 import { PanelHeader } from 'components';
 
-// import ReactQuill from 'react-quill'; // ES6
-// import 'react-quill/dist/quill.snow.css'; // ES6
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 class Forms extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            title: "",
+            body: "",
+            picture: "",
+        }
+        //binding
+        this.onHandleChange = this.onHandleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+    //Handling the input data
+        onHandleChange(e) {
+            this.setState({ body: e });
+            console.log(this.state.body);
+        }
+    //Fetching redux data
+    componentDidMount(){
+        this.props.fetchCategory();
+        //this.props.fetchArticles();
+      }
+    //Request to the database
+            async handleSubmit() {
+                let formData = new FormData();
+            
+                formData.append("title", this.state.title)
+                formData.append("body", this.state.body)
+                formData.append("category", this.state.select)
+                formData.append("picture", this.state.picture)
+            
+            try {
+                let respond = await fetch('http://localhost:8080/articles', {
+                method: 'POST',
+                body: formData
+                });
+                let res = await respond.json();
+                console.log(res.response);
+            
+            } catch(err) {
+                console.log(err)
+        }
+    }
+
     render(){
         return (
             <div>
@@ -20,8 +67,8 @@ class Forms extends React.Component{
                                 </CardHeader>
                                 <hr />
                                 <CardBody>
-                                <Form>
 
+                                <Form onSubmit={this.handleSubmit}>
                                     <FormGroup row>
                                     <Label for="select" sm={2}>Select Category : </Label>
                                     <Col sm={10}>
@@ -44,19 +91,26 @@ class Forms extends React.Component{
                                     </FormGroup>
 
                                     <FormGroup row>
-                                        <Label for="textarea" sm={2}>Text Area : </Label>
+                                        <Label for="textarea" sm={2}>Article body : </Label>
                                             <Col sm={10}>
-                                                <Input type="textarea" onChange={(e)=>{this.setState({body: e.target.value})}} name="textarea" id="textarea" required />
+                                                <ReactQuill 
+                                                    modules={Forms.modules}
+                                                    formats={Forms.formats}
+                                                    value={this.state.body}
+                                                    placeholder="article body goes here .. "
+                                                    // onChange={(e)=>{this.setState({body: e.target.value})}}
+                                                    onChange={this.onHandleChange}
+                                                    required />
                                             </Col>
                                     </FormGroup>
-                                    
+                                    <br />
+                                    <br />
                                     <FormGroup row>
                                         <Label for="File" sm={2}>File : </Label>
                                             <Col sm={10}>
                                                 <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" required />
                                                     <FormText color="muted">
-                                                            Upload article picture.....
-                                                            
+                                                            Upload article picture.....    
                                                     </FormText>
                                             </Col>
                                     </FormGroup>
@@ -79,4 +133,40 @@ class Forms extends React.Component{
         );
     }
 }
-export default Forms;
+//Defining modules for quill
+Forms.modules = {
+    toolbar: [
+      [{ header: '1' }, { header: '2' }, { font: [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+      ['code-block']
+    ]
+  };
+  
+  Forms.formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'link',
+    'image',
+    'video',
+    'code-block'
+  ];
+//export default Forms;
+function matchDatesToProps(state)
+{
+  return{
+    category: state.category
+  }
+}
+export default connect(matchDatesToProps,actions)(Forms);
