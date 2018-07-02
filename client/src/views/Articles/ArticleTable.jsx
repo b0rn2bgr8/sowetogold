@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactTable from "react-table";
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
-import {Row, Col,Card, CardHeader, CardBody, Button} from 'reactstrap';
+import {Row, Col,Card, CardHeader, CardBody} from 'reactstrap';
 import { PanelHeader } from 'components';
 import * as actions from '../../actions';
-//import But from '../../components/CustomButton/CustomButton';
-
 import {connect} from 'react-redux';
 //Loading spinner
 import MDSpinner from "react-md-spinner";
 import moment from 'moment';
 
+//Style for loader
 const style = {
   paddingLeft: "50%"
 }
+//style for buttons 
+
 const styleButton = {
        button: {
        borderColor: "#f96233",
@@ -44,11 +45,11 @@ class Articles extends React.Component{
       this.props.fetchArticles();
      
     }
-    //on submit button
-    onSubmit(){
-      console.log('Testing the add button')
-      this.setState({ isOpen: true })
+
+    onHandleDelete(id) {
+      alert("the id got is" + id);
     }
+
     render(){
       const { articles } = this.props;
 
@@ -92,7 +93,12 @@ class Articles extends React.Component{
       //  },
        {
         Header: 'Action',
-        //accessor: '',
+        Cell: row => (
+          <div>
+            <div onClick={this.onHandleDelete.bind(this,  row.original._id)}>Delete</div>
+            <div onClick={this.onHandleDelete.bind(this,  row.original._id)}>Edit</div>
+            </div>
+        )
        }]
       console.log("Categories",this.props.articles.category);
         return (
@@ -106,14 +112,9 @@ class Articles extends React.Component{
                       <Row>
                           <Col xs="6"><h4>Articles posted </h4></Col>
                        </Row>
-                          {/* <Col xs="6">
-                              <Link to="/admin/articles/addarticle" >
-                                    Add article
-                              </Link>
-                          </Col> */}
-                              <Link to="/admin/articles/addarticle">
-                                  <button style={styleButton.button} round simple>Add</button>
-                              </Link>
+                            <button style={styleButton.button} onClick={() => {
+                            this.props.history.push("/admin/articles/addarticle");
+                            }} round simple>Add</button>
                       </CardHeader>
                     <hr />
 
@@ -148,7 +149,6 @@ class Articles extends React.Component{
         );
     }
 }
-
 function matchDatesToProps(state)
 {
   return{

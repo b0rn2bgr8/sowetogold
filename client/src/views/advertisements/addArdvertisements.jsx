@@ -52,48 +52,15 @@ const backButton = {
 class Forms extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            title: "",
-            body: "",
-            picture: "",
-            category:false,
+
         }
         //binding
-        this.onHandleChange = this.onHandleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
     
     //Handling the input data
-        onHandleChange(e) {
-            this.setState({ body: e });
-            console.log(this.state.body);
-        }
+
     //Fetching redux data
-    componentDidMount(){
-        this.props.fetchCategory();
-        this.props.fetchArticles();
-      }
+
     //Request to the database
-            async handleSubmit() {
-                let formData = new FormData();
-            
-                formData.append("title", this.state.title)
-                formData.append("body", this.state.body)
-                formData.append("category", this.state.select)
-                formData.append("picture", this.state.picture)
-            
-            try {
-                let respond = await fetch('http://localhost:8080/articles', {
-                method: 'POST',
-                body: formData
-                });
-                let res = await respond.json();
-                console.log(res.response);
-            
-            } catch(err) {
-                console.log(err)
-        }
-    }
 
     render(){
         return (
@@ -104,44 +71,31 @@ class Forms extends React.Component{
                         <Col xs={12}>
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Add new article</CardTitle>
+                                    <CardTitle>Add new advert</CardTitle>
                                 </CardHeader>
                                 <hr />
                                 <CardBody>
 
                                 <Form onSubmit={this.handleSubmit}>
-                                    <FormGroup row >
-                                    <Label for="select" sm={2}> Select Category : </Label>
-                                    <Col sm={12} md={3} >
-                                        <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select" >
-                                            {
-                                                this.props.category ? (
-                                                    this.props.category.map((data,index)=>(
-                                                        <option key={index} value={data._id}>{data.name}</option>
-                                                    ))
-                                                ): null }
-                                        </Input>
-                                    </Col>
-                                    </FormGroup>
                                    
                                     <FormGroup row>
-                                        <Label for="Title" sm={2}>Title : </Label>
-                                            <Col sm={12} md={3} >
-                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Summary of the article ..." required />
+                                        <Label for="Title" sm={2} >Title : </Label>
+                                            <Col sm={10} md={3}>
+                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Summary of the advert ..." required />
                                             </Col>
                                     </FormGroup>
 
                                     <FormGroup row>
-                                        <Label for="textarea" sm={2}>Article body : </Label>
-                                            <Col sm={10}>
+                                        <Label for="textarea" sm={2}>Advert body : </Label>
+                                            <Col sm={10} >
                                                 <ReactQuill theme="snow"
                                                     
                                                     modules={Forms.modules}
                                                     formats={Forms.formats}
-                                                    value={this.state.body}
-                                                    placeholder="article body goes here .. "
+                                                    //value={this.state.body}
+                                                    placeholder="advert body goes here .. "
                                                     // onChange={(e)=>{this.setState({body: e.target.value})}}
-                                                    onChange={this.onHandleChange}
+                                                    //onChange={this.onHandleChange}
                                                     required />
                                             </Col>
                                     </FormGroup>
@@ -149,7 +103,7 @@ class Forms extends React.Component{
                                     <br />
                                     <FormGroup row>
                                         <Label for="File" sm={2}> </Label>
-                                            <Col sm={10} >
+                                            <Col sm={10}>
                                                 <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" required />
                                                     <FormText color="muted">
                                                             Upload article picture.....    
@@ -162,7 +116,7 @@ class Forms extends React.Component{
                                             <button style={styleButton.button} type="submit">Submit</button>
                                             <button style={clearButton.button} type="reset">Clear</button>
                                             <button style={backButton.button} onClick={() => {
-                                                this.props.history.push("/admin/articles");
+                                                this.props.history.push("/admin/manage_advertisements");
                                             }}round simple > Go back </button>
                                         </Col>
                                     </FormGroup>
