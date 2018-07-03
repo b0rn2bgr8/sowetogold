@@ -2,20 +2,19 @@ import React from 'react';
 import ReactTable from "react-table";
 //import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
-import {Row, Col,Card, CardHeader, CardBody} from 'reactstrap';
+import {Row, Col,Card, CardHeader, CardBody,Modal,Form,ModalHeader,ModalBody,Label,Input,FormGroup,Button,ModalFooter} from 'reactstrap';
 import { PanelHeader } from 'components';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 //Loading spinner
 import MDSpinner from "react-md-spinner";
 import moment from 'moment';
-import FaBeer from 'react-icons/lib/fa/beer';
 //IMporting all icons from fontAwesome
 import * as FontAwesome from 'react-icons/lib/fa'
 
 //Style for loader
 const style = {
-  paddingLeft: "50%"
+  paddingLeft: "50%",
 }
 //Style for buttons 
 const styleButton = {
@@ -28,6 +27,33 @@ const styleButton = {
   borderRadius: "30px",
   padding: "7px 25px",
   margin: "8px"
+  },
+}
+//Style for clear button
+const clearButton = {
+  button: {
+  borderColor: "#f96233",
+  backgroundColor: "#ffffff",
+  color: "#f96233",
+  cursor: "pointer",
+  borderWidth: ".9px",
+  borderRadius: "30px",
+  padding: "7px 25px",
+  margin: "8px"
+  },
+}
+//style for icons
+const styleIcons = {
+  button: {
+  borderColor: "rgba(0,0,0,0.03)",
+  backgroundColor: "rgba(0,0,0,0.03)",
+  color: "#0d0e0f",
+  cursor: "pointer",
+  borderWidth: ".1px",
+  borderRadius: "50px",
+  margin: "2px",
+  position: "center",
+  decoration:"none",
   },
 }
 
@@ -50,8 +76,13 @@ class Articles extends React.Component{
      
     }
 
-    onHandleDelete(id) {
-      alert("the id got is " + id);
+    //Handling the action buttons 
+    onHandleEdit(id) {
+      // alert("Edit record " + id);
+      this.setState({ isOpen: true })
+    }
+    onHandleDelete(id){
+      alert("Delete record number " + id );
     }
 
     render(){
@@ -92,10 +123,11 @@ class Articles extends React.Component{
         accessor: "createdAt",
        },{
         Header: 'Action',
+        maxWidth:70,
         Cell: row => (
           <div>
-            <button onClick={this.onHandleDelete.bind(this,row.original._id)}>Delete <FontAwesome.FaEdit /> </button>
-            <button onClick={this.onHandleDelete.bind(this,row.original._id)}>Edit <FaBeer /></button>
+            <button style={styleIcons.button} onClick={this.onHandleDelete.bind(this,row.original._id)}><FontAwesome.FaTrash /></button>
+            <button style={styleIcons.button} onClick={this.onHandleEdit.bind(this,row.original._id)}><FontAwesome.FaEdit /></button>
           </div>
         )
        }]
@@ -149,6 +181,48 @@ class Articles extends React.Component{
               </Row>
   
             </div> 
+            {/* Modal starts here */}
+            <Modal isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}}>
+        <Form>
+                <ModalHeader> Editing article information </ModalHeader>
+
+                <ModalBody>
+
+                <FormGroup>
+                        <Label for="select">Select Category</Label>
+                        <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select">
+                            {this.props.category ? (
+                                this.props.category.map((data,index)=>(
+                                  <option key={index} value={data._id}>{data.name}</option>
+                                ))
+                            ): null}
+                        </Input>
+                    </FormGroup>
+
+                    <FormGroup>
+                      <Label for="article">Article</Label>
+                      <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} name="article" id="article" />
+                    </FormGroup> 
+                    
+                    <FormGroup>
+                        <Label for="text">Text Area</Label>
+                        <Input type="textarea" onChange={(e)=>{this.setState({body: e.target.value})}} name="textarea" id="textarea" />
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="File">File</Label>
+                            <Input type="file" onChange={(e)=>{this.setState({picture: e.target.value})}} sm={2} name="file" id="File" />
+                    </FormGroup>
+
+                </ModalBody>
+
+                <ModalFooter>
+                      <button style={styleButton.button} type="submit" outline color="success">Save</button>
+                      <button onClick={this.toggle} style={clearButton.button} type="close" class="btn btn-secondary">Cancel</button>
+                </ModalFooter>
+
+        </Form>
+     </Modal> 
         </div>
         );
     }

@@ -8,6 +8,10 @@ import { PanelHeader } from 'components';
 
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
+//IMporting all icons from fontAwesome
+import * as FontAwesome from 'react-icons/lib/fa'
+// import axios from 'react-axios';
+// import axios from 'axios';
 
 //Style for buttons 
 const styleButton = {
@@ -57,12 +61,15 @@ class Forms extends React.Component{
             body: "",
             picture: "",
             category:false,
+
         }
         //binding
         this.onHandleChange = this.onHandleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+    state = {
+        selectedFile: null
+    }
     //Handling the input data
         onHandleChange(e) {
             this.setState({ body: e });
@@ -94,7 +101,20 @@ class Forms extends React.Component{
                 console.log(err)
         }
     }
-
+    fileSelectedHandler = event => {
+        //console.log(event.target.files[0]);
+        this.setState({
+            selectedFile:event.target.files[0]
+        })
+    }
+    // fileUploadHandler = () => {
+    //     const fd = new FormData();
+    //     fd.append('image',this.state.selectedFile, this.state.selectedFile.name);
+    //     axios.post('https://',fd);//add firebase url or any cloud storage url
+    //        then(res => {
+    //            console.log(res);
+    //        });
+    // }
     render(){
         return (
             <div>
@@ -135,7 +155,6 @@ class Forms extends React.Component{
                                         <Label for="textarea" sm={2}>Article body : </Label>
                                             <Col sm={10}>
                                                 <ReactQuill theme="snow"
-                                                    
                                                     modules={Forms.modules}
                                                     formats={Forms.formats}
                                                     value={this.state.body}
@@ -149,11 +168,15 @@ class Forms extends React.Component{
                                     <br />
                                     <FormGroup row>
                                         <Label for="File" sm={2}> </Label>
-                                            <Col sm={10} >
-                                                <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" required />
+                                            <Col sm={4} >
+                                                <input type="file" onChange={this.fileSelectedHandler} name="file" id="File" />
+                                                {/* <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" /> */}
+                                                <Col md={10} width={80}>
                                                     <FormText color="muted">
-                                                            Upload article picture.....    
+                                                            <FontAwesome.FaFile/> Upload article picture.....
+                                                            {/* <button onClick={this.fileUploadHandler}>Upload</button>     */}
                                                     </FormText>
+                                                </Col>
                                             </Col>
                                     </FormGroup>
                                     
