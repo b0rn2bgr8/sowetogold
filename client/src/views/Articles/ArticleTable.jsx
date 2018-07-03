@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTable from "react-table";
 import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
-import {Row, Col,Card, CardHeader, CardBody} from 'reactstrap';
+import {Row, Col,Card, CardHeader, CardBody, Button} from 'reactstrap';
 import { PanelHeader } from 'components';
 import * as actions from '../../actions';
 //import But from '../../components/CustomButton/CustomButton';
@@ -14,6 +14,24 @@ import moment from 'moment';
 
 const style = {
   paddingLeft: "50%"
+}
+const styleButton = {
+       buton: {
+        borderColor: "#f96233",
+       backgroundColor: "#ffffff",
+       color: "#f96233",
+       cursor: "pointer",
+       borderWidth: ".9px",
+       borderRadius: "30px",
+       padding: "7px 25px"
+       },
+    // borderColor: f96233,
+    // background-color: #ffffff;
+    // color: #f96233;
+    // cursor: pointer;
+    // padding: 7px 25px;
+    // border-width: .9px;
+    // border-radius: 30px;
 }
 
 class Articles extends React.Component{
@@ -40,6 +58,7 @@ class Articles extends React.Component{
     }
     render(){
       const { articles } = this.props;
+
       const columns = [{
         Header: "#",
         id: "row",
@@ -94,11 +113,14 @@ class Articles extends React.Component{
                       <Row>
                           <Col xs="6"><h4>Articles posted </h4></Col>
                        </Row>
-                          <Col xs="6">
+                          {/* <Col xs="6">
                               <Link to="/admin/articles/addarticle" >
                                     Add article
                               </Link>
-                          </Col>
+                          </Col> */}
+                              <Link to="/admin/articles/addarticle">
+                                  <button style={styleButton.buton} round simple>Add</button>
+                              </Link>
                       </CardHeader>
                     <hr />
 
@@ -133,6 +155,7 @@ class Articles extends React.Component{
         );
     }
 }
+
 function matchDatesToProps(state)
 {
   return{
