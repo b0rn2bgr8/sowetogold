@@ -2,16 +2,13 @@ import React from 'react';
 import ReactTable from "react-table";
 //import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
-import {Row, Col,Card, CardHeader, CardBody} from 'reactstrap';
+import {Row, Col,Card, CardHeader, CardBody, Button} from 'reactstrap';
 import { PanelHeader } from 'components';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 //Loading spinner
 import MDSpinner from "react-md-spinner";
 import moment from 'moment';
-import FaBeer from 'react-icons/lib/fa/beer';
-//IMporting all icons from fontAwesome
-import * as FontAwesome from 'react-icons/lib/fa'
 
 //Style for loader
 const style = {
@@ -40,7 +37,6 @@ class Articles extends React.Component{
           category:false,
           author:false,
           isOpen:false,
-          //data: makeData()
         }
     }
     //Components
@@ -51,11 +47,12 @@ class Articles extends React.Component{
     }
 
     onHandleDelete(id) {
-      alert("the id got is " + id);
+      alert("the id got is" + id);
     }
 
     render(){
       const { articles } = this.props;
+
       const columns = [{
         Header: "#",
         id: "row",
@@ -72,10 +69,7 @@ class Articles extends React.Component{
         accessor: 'body',
       },{
          Header: 'Picture',
-            Cell: (row) => {
-              return <div><img height={34} src={row.original.ImgPath} alt={"not suppoted"}/></div>
-            },
-            id: "picture"
+         //accessor: '',
        },{
          Header: 'Category',
          row: "row",
@@ -83,25 +77,31 @@ class Articles extends React.Component{
          Cell:(row) =>{
            return <div>{row._id}</div>
          }
+         /*<td>{(article.category.length > 0) ? article.category[0].name : 'N/A'}</td>*/
+         //articles.Category.name
        },{
          Header: "Status",
-         accessor:"status",
+         //accessor:"",
        },
        {
         Header: 'Date posted',
         accessor: "createdAt",
-       },{
+       },
+      //  {
+      //    Header:'Date updated',
+      //    accesor:"updatedAt",
+      //  },
+       {
         Header: 'Action',
         Cell: row => (
           <div>
-            <button onClick={this.onHandleDelete.bind(this,row.original._id)}>Delete <FontAwesome.FaEdit /> </button>
-            <button onClick={this.onHandleDelete.bind(this,row.original._id)}>Edit <FaBeer /></button>
-          </div>
+            <div onClick={this.onHandleDelete.bind(this,  row.original._id)}>Delete</div>
+            <div onClick={this.onHandleDelete.bind(this,  row.original._id)}>Edit</div>
+            </div>
         )
        }]
 
-       console.log(articles)
-      //console.log("Categories",this.props.articles.category);
+      console.log("Categories",this.props.articles.category);
 
         return (
           <div>
@@ -112,10 +112,10 @@ class Articles extends React.Component{
                   <Card>
                     <CardHeader>
                       <Row>
-                          <Col xs="6"><h4>Articles posted </h4></Col>
+                          <Col xs="6"><h4>Videos online  </h4></Col>
                        </Row>
                             <button style={styleButton.button} onClick={() => {
-                            this.props.history.push("/admin/articles/addarticle");
+                            this.props.history.push("/admin/videos/addvideos");
                             }} round simple>Add</button>
                       </CardHeader>
                     <hr />
@@ -124,8 +124,6 @@ class Articles extends React.Component{
                       {articles ? 
                         <ReactTable
                           defaultPageSize={5}
-                          className="-striped -highlight"
-                          //loadingText= 'Loading...'
                           data={articles}
                           resolveData={data => data.map(row => {
                             //row.createdAt = Date(row.createdAt);
@@ -135,10 +133,10 @@ class Articles extends React.Component{
                               console.log(el)
                             });
 
-                              return row;
-                            })}
-                            columns={columns}
-                            /> :
+                            return row;
+                          })}
+                          columns={columns}
+                         /> :
                         <div style={style}>
                             <MDSpinner size="50" />
                         </div>

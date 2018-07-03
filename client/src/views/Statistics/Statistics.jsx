@@ -21,11 +21,12 @@ class Statistics extends React.Component{
                         <Col xs={12} md={4}>
                             <Card className="card-chart">
                                 <CardHeader>
-                                    <CardTitle>Number of articles</CardTitle>
+                                    <CardTitle>Articles online</CardTitle>
                                     <hr />
                                 </CardHeader>
                                 <CardBody>
-                                    <h6>58 published</h6>
+                                    <h6>57 152 published</h6><br />
+                                    <h6>5 drafts</h6>
                                 </CardBody>
                                 <CardFooter>
                                     <Stats>
@@ -39,11 +40,12 @@ class Statistics extends React.Component{
                         <Col xs={12} md={4}>
                             <Card className="card-chart">
                                 <CardHeader>
-                                    <CardTitle>Number of users online</CardTitle>
+                                    <CardTitle>Videos online</CardTitle>
                                     <hr />
                                 </CardHeader>
                                 <CardBody>
-                                        <h6>1 542 users online</h6>
+                                        <h6>1 542 online</h6><br />
+                                        <h6>8 drafts</h6>
                                 </CardBody>
                                 <CardFooter>
                                     <Stats>
@@ -57,11 +59,12 @@ class Statistics extends React.Component{
                         <Col xs={12} md={4}>
                             <Card className="card-chart">
                                 <CardHeader>
-                                    <CardTitle>Adverts posted</CardTitle>
+                                    <CardTitle>Adverts online</CardTitle>
                                     <hr />
                                 </CardHeader>
                                 <CardBody>
-                                        <h6>12 adverts posted</h6>
+                                        <h6>12 online</h6><br />
+                                        <h6>4 drafts</h6>
                                 </CardBody>
                                 <CardFooter>
                                     <Stats>

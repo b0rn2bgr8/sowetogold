@@ -1,29 +1,14 @@
 const Article = require('../models/article.model');
 const router = require('express').Router();
-// const multer = require('multer');
-
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, 'client/uploads/')
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, file.fieldname + '-' + Date.now() + '.' + "jpg")
-//     }
-//   })
-// const upload = multer({
-//     storage: storage
-// });
 
 //Creating a POST endpoint
-// router.post('/articles',upload.single('picture'), (req, res)=>{
     router.post('/articles', (req, res)=>{
-    //console.log(req.file)
     var article = new Article();
-
     let new_article = new Article({
         title:req.body.title,
         body:req.body.body,
-        // picture: req.file.filename,
+        status:req.body.status,
+        picture: req.body.picture,
         });
 
         new_article.category.push(req.body.category)

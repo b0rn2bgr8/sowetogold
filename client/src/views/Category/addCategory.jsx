@@ -104,56 +104,24 @@ class Forms extends React.Component{
                         <Col xs={12}>
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Add new article</CardTitle>
+                                    <CardTitle>Add new category</CardTitle>
                                 </CardHeader>
                                 <hr />
                                 <CardBody>
 
                                 <Form onSubmit={this.handleSubmit}>
-                                    <FormGroup row >
-                                    <Label for="select" sm={2}> Select Category : </Label>
-                                    <Col sm={12} md={3} >
-                                        <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select" >
-                                            {
-                                                this.props.category ? (
-                                                    this.props.category.map((data,index)=>(
-                                                        <option key={index} value={data._id}>{data.name}</option>
-                                                    ))
-                                                ): null }
-                                        </Input>
-                                    </Col>
-                                    </FormGroup>
                                    
                                     <FormGroup row>
                                         <Label for="Title" sm={2}>Title : </Label>
                                             <Col sm={12} md={3} >
-                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Summary of the article ..." required />
+                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Category" required />
                                             </Col>
                                     </FormGroup>
 
                                     <FormGroup row>
-                                        <Label for="textarea" sm={2}>Article body : </Label>
-                                            <Col sm={10}>
-                                                <ReactQuill theme="snow"
-                                                    
-                                                    modules={Forms.modules}
-                                                    formats={Forms.formats}
-                                                    value={this.state.body}
-                                                    placeholder="article body goes here .. "
-                                                    // onChange={(e)=>{this.setState({body: e.target.value})}}
-                                                    onChange={this.onHandleChange}
-                                                    required />
-                                            </Col>
-                                    </FormGroup>
-                                    <br />
-                                    <br />
-                                    <FormGroup row>
-                                        <Label for="File" sm={2}> </Label>
-                                            <Col sm={10} >
-                                                <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" required />
-                                                    <FormText color="muted">
-                                                            Upload article picture.....    
-                                                    </FormText>
+                                        <Label for="Title" sm={2}>Description : </Label>
+                                            <Col sm={12} md={10} padding={80}>
+                                                <Input type="textarea" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Description goes here .." required />
                                             </Col>
                                     </FormGroup>
                                     
@@ -162,7 +130,7 @@ class Forms extends React.Component{
                                             <button style={styleButton.button} type="submit">Submit</button>
                                             <button style={clearButton.button} type="reset">Clear</button>
                                             <button style={backButton.button} onClick={() => {
-                                                this.props.history.push("/admin/articles");
+                                                this.props.history.push("/admin/manage_category");
                                             }}round simple > Go back </button>
                                         </Col>
                                     </FormGroup>
@@ -179,35 +147,6 @@ class Forms extends React.Component{
         );
     }
 }
-//Defining modules for quill
-Forms.modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image', 'video'],
-      ['clean'],
-      ['code-block']
-    ]
-  };
-  
-  Forms.formats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'link',
-    'image',
-    'video',
-    'code-block'
-  ];
 //export default Forms;
 function matchDatesToProps(state)
 {
