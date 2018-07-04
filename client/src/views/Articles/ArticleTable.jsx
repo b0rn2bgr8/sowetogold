@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTable from "react-table";
 //import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
-import {Row, Col,Card, CardHeader, CardBody,Modal,Form,ModalHeader,ModalBody,Label,Input,FormGroup,Button,ModalFooter} from 'reactstrap';
+import {Row, Col,Card, CardHeader, CardBody,Modal,Form,ModalHeader,ModalBody,Label,Input,FormGroup,ModalFooter} from 'reactstrap';
 import { PanelHeader } from 'components';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';

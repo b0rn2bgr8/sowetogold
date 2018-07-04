@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 //Loading spinner
 import MDSpinner from "react-md-spinner";
 import moment from 'moment';
+//IMporting all icons from fontAwesome
+import * as FontAwesome from 'react-icons/lib/fa'
 
 //Style for loader
 const style = {
@@ -27,7 +29,20 @@ const styleButton = {
   margin: "8px"
   },
 }
-
+//style for icons
+const styleIcons = {
+  button: {
+  borderColor: "rgba(0,0,0,0.03)",
+  backgroundColor: "rgba(0,0,0,0.03)",
+  color: "#0d0e0f",
+  cursor: "pointer",
+  borderWidth: ".1px",
+  borderRadius: "50px",
+  margin: "2px",
+  position: "center",
+  decoration:"none",
+  },
+}
 class Articles extends React.Component{
       constructor(){
         super();
@@ -46,62 +61,59 @@ class Articles extends React.Component{
      
     }
 
+     //Handling the action buttons 
+     onHandleEdit(id) {
+      // alert("Edit record " + id);
+      this.setState({ isOpen: true })
+    }
     onHandleDelete(id) {
       alert("the id got is" + id);
     }
 
     render(){
-      const { articles } = this.props;
+      const data = [
+        {
+        Number: '1',
+        Name: 'Youth day 2018',
+        Video: 'youth.mp4',
+        Summary:'Video took on june 16 2018 , by the streets of soweto ',
+        Date: 'Jul 17th 2018', 
+      }]
 
       const columns = [{
-        Header: "#",
-        id: "row",
+        Header: '#',
+        accessor: 'Number', // String-based value accessors!
         maxWidth:50,
-        filterable:false,
-        Cell:(row) => {
-          return <div>{row.index+1}</div>
-        }
       }, {
-        Header: 'Title',
-        accessor: 'title',
-      }, {
-        Header: 'Body',
-        accessor: 'body',
+        Header: 'Name',
+        accessor: 'Name',
+        maxWidth: 150,
       },{
-         Header: 'Picture',
-         //accessor: '',
-       },{
-         Header: 'Category',
-         row: "row",
-         filterable:false,
-         Cell:(row) =>{
-           return <div>{row._id}</div>
-         }
-         /*<td>{(article.category.length > 0) ? article.category[0].name : 'N/A'}</td>*/
-         //articles.Category.name
-       },{
-         Header: "Status",
-         //accessor:"",
-       },
-       {
-        Header: 'Date posted',
-        accessor: "createdAt",
-       },
-      //  {
-      //    Header:'Date updated',
-      //    accesor:"updatedAt",
-      //  },
-       {
-        Header: 'Action',
-        Cell: row => (
-          <div>
-            <div onClick={this.onHandleDelete.bind(this,  row.original._id)}>Delete</div>
-            <div onClick={this.onHandleDelete.bind(this,  row.original._id)}>Edit</div>
-            </div>
-        )
-       }]
+        Header:'Video',
+        //accessor:'Video',
+        Cell: (row) => {
+          return <div><video height={34} src={row.original.ImgPath} alt={"not suppoted"}/></div>
+        },
+        id: "picture"
 
-      console.log("Categories",this.props.articles.category);
+      },
+      {
+        Header: 'Summary',
+        accessor:'Summary',
+      },{
+        Header: 'Date Posted',
+        accessor: 'Date',
+        maxWidth: 150
+      },{
+          Header: 'Action',
+          maxWidth:70,
+          Cell: row => (
+            <div>
+              <button style={styleIcons.button} onClick={this.onHandleDelete.bind(this,row.original._id)}><FontAwesome.FaTrash /></button>
+              <button style={styleIcons.button} onClick={this.onHandleEdit.bind(this,row.original._id)}><FontAwesome.FaEdit /></button>
+            </div>
+          )
+         }]
 
         return (
           <div>
@@ -121,26 +133,12 @@ class Articles extends React.Component{
                     <hr />
 
                     <CardBody>
-                      {articles ? 
                         <ReactTable
-                          defaultPageSize={5}
-                          data={articles}
-                          resolveData={data => data.map(row => {
-                            //row.createdAt = Date(row.createdAt);
-                            //moment().format('llll');
-                            row.createdAt = moment(row.createdAt).format('MMM Do YYYY, h:mm a');
-                            row.category.forEach(el => {
-                              console.log(el)
-                            });
-
-                            return row;
-                          })}
-                          columns={columns}
-                         /> :
-                        <div style={style}>
-                            <MDSpinner size="50" />
-                        </div>
-                      }
+                              className="-striped -highlight"
+                              defaultPageSize={5}
+                              data={data}
+                              columns={columns}
+                              />
                     </CardBody>
                   </Card>
                 </Col>

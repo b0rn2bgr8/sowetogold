@@ -88,6 +88,7 @@ class Advertisements extends React.Component{
 
                     <CardBody>
                         <ReactTable
+                        className="-striped -highlight"
                         defaultPageSize={5}
                         data={data}
                         columns={columns}
