@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 //Loading spinner
 import MDSpinner from "react-md-spinner";
 import moment from 'moment';
+//IMporting all icons from fontAwesome
+import * as FontAwesome from 'react-icons/lib/fa'
 
 //Style for loader
 const style = {
@@ -27,6 +29,21 @@ const styleButton = {
        },
 }
 
+//style for icons
+const styleIcons = {
+  button: {
+  borderColor: "rgba(0,0,0,0.03)",
+  backgroundColor: "rgba(0,0,0,0.03)",
+  color: "#0d0e0f",
+  cursor: "pointer",
+  borderWidth: ".1px",
+  borderRadius: "50px",
+  margin: "2px",
+  position: "center",
+  decoration:"none",
+  },
+}
+
 class Advertisements extends React.Component{
       constructor(){
         super();
@@ -39,36 +56,48 @@ class Advertisements extends React.Component{
         }
     }
     //Components
-
+         //Handling the action buttons 
+         onHandleEdit(id) {
+          // alert("Edit record " + id);
+          this.setState({ isOpen: true })
+        }
     onHandleDelete(id) {
       alert("the id got is" + id);
     }
 
     render(){
-        const data = [{
-            name: 'Tanner Linsley',
-            age: 26,
-            friend: {
-              name: 'Jason Maurer',
-              age: 23,
-            }
-          }]
-         
-          const columns = [{
-            Header: 'Name',
-            accessor: 'name' // String-based value accessors!
-          }, {
-            Header: 'Age',
-            accessor: 'age',
-            Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-          }, {
-            id: 'friendName', // Required because our accessor is not a string
-            Header: 'Friend Name',
-            accessor: d => d.friend.name // Custom value accessors!
-          }, {
-            Header: props => <span>Friend Age</span>, // Custom header components!
-            accessor: 'friend.age'
-          }]
+      const data = [
+        {
+        Number: '1',
+        Name: 'Sports',
+        Summary:'Contains all the news that are related to news',
+        Date: 'Jun 14th 2018', 
+      }]
+
+      const columns = [{
+        Header: '#',
+        accessor: 'Number', // String-based value accessors!
+        maxWidth:50,
+      }, {
+        Header: 'Name',
+        accessor: 'Name',
+        maxWidth: 100,
+      },{
+        Header: 'Summary description',
+        accessor:'Summary',
+      },{
+        Header: 'Date Posted',
+        accessor: 'Date',
+      },{
+          Header: 'Action',
+          maxWidth:70,
+          Cell: row => (
+            <div>
+              <button style={styleIcons.button} onClick={this.onHandleDelete.bind(this,row.original._id)}><FontAwesome.FaTrash /></button>
+              <button style={styleIcons.button} onClick={this.onHandleEdit.bind(this,row.original._id)}><FontAwesome.FaEdit /></button>
+            </div>
+          )
+         }]
         return (
           <div>
             <PanelHeader size="sm" />

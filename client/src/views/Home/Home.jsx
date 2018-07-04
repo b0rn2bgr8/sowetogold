@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Jumbotron } from "reactstrap";
+import { Container, Row, Col, Jumbotron,CardDeck,Card,CardTitle,CardImg,CardBody,CardText,Button,Media } from "reactstrap";
 
 class Home extends Component{
     render(){
@@ -8,11 +8,6 @@ class Home extends Component{
                 <Jumbotron>
                     <h1>Welcome to Soweto Observer</h1>
                 </Jumbotron>
-                <Container>
-                    <Row>
-                        <Col></Col>
-                    </Row>
-                </Container>
             </div>
         )
     }

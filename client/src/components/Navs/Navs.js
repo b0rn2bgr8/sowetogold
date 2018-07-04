@@ -20,7 +20,7 @@ export default class Navs extends React.Component {
     return (
       <div>
         <Navbar dark color="dark" expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/">Soweto Observer</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
