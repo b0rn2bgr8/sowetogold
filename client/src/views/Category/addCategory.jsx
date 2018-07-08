@@ -5,7 +5,6 @@ import 'react-quill/dist/quill.snow.css';
 // import renderHTML from 'react-render-html';
 import { Card, CardBody, CardHeader, CardTitle, Row, Col,Button,Form,FormGroup, Label,Input, FormText } from 'reactstrap';
 import { PanelHeader } from 'components';
-
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
@@ -53,48 +52,36 @@ class Forms extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            title: "",
-            body: "",
-            picture: "",
-            category:false,
+            name: "",
+            description: "",
         }
         //binding
-        this.onHandleChange = this.onHandleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
-    //Handling the input data
-        onHandleChange(e) {
-            this.setState({ body: e });
-            console.log(this.state.body);
-        }
-    //Fetching redux data
-    componentDidMount(){
-        this.props.fetchCategory();
-        this.props.fetchArticles();
-      }
-    //Request to the database
-            async handleSubmit() {
-                let formData = new FormData();
-            
-                formData.append("title", this.state.title)
-                formData.append("body", this.state.body)
-                formData.append("category", this.state.select)
-                formData.append("picture", this.state.picture)
-            
-            try {
-                let respond = await fetch('http://localhost:8080/articles', {
+    }    
+      //On handle login function
+         handleSubmit(e) {
+            e.preventDefault();
+                let obj = {
+                "name": this.state.name,
+                "description": this.state.description,
+                }
+            fetch('http://localhost:8080/category', {
                 method: 'POST',
-                body: formData
-                });
-                let res = await respond.json();
-                console.log(res.response);
-            
-            } catch(err) {
-                console.log(err)
-        }
-    }
+                credentials:"include",
+                    headers:{
+                    "Accept":"application/json",
+                    "Content-Type":"application/json"
+                    },
+                body: JSON.stringify(obj)
+                })
+                .then((data)=> {
+                    return data.json();
+            }).then((body)=>{
+                this.props.fetchCategory(body);
+                this.props.history.push('/admin/manage_category');
+            });
 
+        }
     render(){
         return (
             <div>
@@ -109,32 +96,31 @@ class Forms extends React.Component{
                                 <hr />
                                 <CardBody>
 
-                                <Form onSubmit={this.handleSubmit}>
-                                   
-                                    <FormGroup row>
-                                        <Label for="Title" sm={2}>Title : </Label>
-                                            <Col sm={12} md={3} >
-                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Category" required />
-                                            </Col>
-                                    </FormGroup>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup row>
+                                            <Label for="Title" sm={2}>Title : </Label>
+                                                <Col sm={12} md={3} >
+                                                    <Input type="text" onChange={(e)=>{this.setState({name: e.target.value})}} placeholder="Category" required />
+                                                </Col>
+                                        </FormGroup>
 
-                                    <FormGroup row>
-                                        <Label for="Title" sm={2}>Description : </Label>
-                                            <Col sm={12} md={10} padding={80}>
-                                                <Input type="textarea" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Description goes here .." required />
+                                        <FormGroup row>
+                                            <Label for="Description" sm={2}>Description : </Label>
+                                                <Col sm={12} md={10} padding={80}>
+                                                    <Input type="textarea" onChange={(e)=>{this.setState({description: e.target.value})}} placeholder="Description goes here .." required />
+                                                </Col>
+                                        </FormGroup>
+                                        
+                                        <FormGroup check row>
+                                            <Col sm={{ size:10,offset:4 }}>
+                                                <button type="submit" style={styleButton.button} type="submit">Submit</button>
+                                                <button style={clearButton.button} type="reset">Clear</button>
+                                                <button style={backButton.button} onClick={() => {
+                                                    this.props.history.push("/admin/manage_category");
+                                                }}round simple > Go back </button>
                                             </Col>
-                                    </FormGroup>
-                                    
-                                    <FormGroup check row>
-                                        <Col sm={{ size:10,offset:4 }}>
-                                            <button style={styleButton.button} type="submit">Submit</button>
-                                            <button style={clearButton.button} type="reset">Clear</button>
-                                            <button style={backButton.button} onClick={() => {
-                                                this.props.history.push("/admin/manage_category");
-                                            }}round simple > Go back </button>
-                                        </Col>
-                                    </FormGroup>
-                                </Form>
+                                        </FormGroup>
+                                    </Form>
 
                                 </CardBody>
                             </Card>

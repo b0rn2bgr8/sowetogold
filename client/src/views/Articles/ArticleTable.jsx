@@ -73,7 +73,6 @@ class Articles extends React.Component{
     componentDidMount(){
       // this.props.fetchCategory();
       this.props.fetchArticles();
-     
     }
 
     //Handling the action buttons 
@@ -98,9 +97,6 @@ class Articles extends React.Component{
       }, {
         Header: 'Title',
         accessor: 'title',
-      }, {
-        Header: 'Body',
-        accessor: 'body',
       },{
          Header: 'Picture',
             Cell: (row) => {
@@ -132,9 +128,8 @@ class Articles extends React.Component{
         )
        }]
 
-       console.log(articles)
+       //console.log(this.props.articles)
       //console.log("Categories",this.props.articles.category);
-
         return (
           <div>
             <PanelHeader size="sm" />

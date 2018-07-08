@@ -16,6 +16,6 @@ export const fetchArticles = () => async dispatch => {
 export const fetchCategory = () => async dispatch => {
     const res = await fetch(base+'/category');
     const data = await res.json();
-    console.log("category", data);
+    //console.log("category", data);
     dispatch({type: FETCH_CATEGORY, payload: data});
  };

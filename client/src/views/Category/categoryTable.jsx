@@ -14,10 +14,23 @@ import * as FontAwesome from 'react-icons/lib/fa'
 
 //Style for loader
 const style = {
-  paddingLeft: "50%"
+  paddingLeft: "50%",
 }
 //Style for buttons 
 const styleButton = {
+  button: {
+  borderColor: "#f96233",
+  backgroundColor: "#ffffff",
+  color: "#f96233",
+  cursor: "pointer",
+  borderWidth: ".9px",
+  borderRadius: "30px",
+  padding: "7px 25px",
+  margin: "8px"
+  },
+}
+//Style for clear button
+const clearButton = {
   button: {
   borderColor: "#f96233",
   backgroundColor: "#ffffff",
@@ -44,56 +57,50 @@ const styleIcons = {
   },
 }
 
-class Articles extends React.Component{
+class Category extends React.Component{
       constructor(){
         super();
         this.state={
           data: [],
-          article: false,
-          category:false,
-          author:false,
+          name: false,
+          description: false,
           isOpen:false,
         }
     }
     //Components
     componentDidMount(){
-      // this.props.fetchCategory();
-      this.props.fetchArticles();
-     
+      this.props.fetchCategory();
     }
      //Handling the action buttons 
      onHandleEdit(id) {
-      // alert("Edit record " + id);
       this.setState({ isOpen: true })
     }
     onHandleDelete(id) {
-      alert("the id got is" + id);
+      alert("Delete record number " + id );
     }
 
     render(){
-      const data = [
-        {
-        Number: '1',
-        Name: 'Sports',
-        Summary:'Contains all the news that are related to news',
-        Date: 'Jun 14th 2018', 
-      }]
-
+      const { category } = this.props;
       const columns = [{
-        Header: '#',
-        accessor: 'Number', // String-based value accessors!
-        maxWidth:50,
-      }, {
-        Header: 'Name',
-        accessor: 'Name',
-        maxWidth: 100,
+          Header: '#',
+          id: "row",
+          maxWidth:50,
+          filterable:false,
+          Cell:(row) => {
+            return <div>{row.index+1}</div>
+          }
       },{
-        Header: 'Summary description',
-        accessor:'Summary',
+        Header: "Name",
+        accessor: "name",
+        maxWidth: 200,
       },{
-        Header: 'Date Posted',
-        accessor: 'Date',
+        Header: "Description",
+        accessor: "description",
       },{
+        Header: 'Date posted',
+        accessor: "createdAt",
+        maxWidth: 300,
+       },{
           Header: 'Action',
           maxWidth:70,
           Cell: row => (
@@ -103,7 +110,8 @@ class Articles extends React.Component{
             </div>
           )
          }]
-
+         console.log(category)
+        //  console.log(articles)
         return (
           <div>
             <PanelHeader size="sm" />
@@ -122,12 +130,26 @@ class Articles extends React.Component{
                       <hr />
 
                     <CardBody>
-                          <ReactTable
-                              className="-striped -highlight"
-                              defaultPageSize={5}
-                              data={data}
-                              columns={columns}
-                              />   
+                       {category ? 
+                        <ReactTable
+                        defaultPageSize={5}
+                        className="-striped -highlight"
+                        data={category}
+                            resolveData={data => data.map(row => {
+                            //row.createdAt = Date(row.createdAt);
+                            //moment().format('llll');
+                            row.createdAt = moment(row.createdAt).format('MMM Do YYYY, h:mm a');
+                            /*row.category.forEach(el => {
+                              console.log(el)
+                             });*/
+                              return row;
+                            })}
+                        columns = { columns }
+                        /> :
+                         <div style={style}>
+                            <MDSpinner size = "50" />
+                          </div>
+                       }
                     </CardBody>
                   </Card>
                 </Col>
@@ -141,7 +163,7 @@ class Articles extends React.Component{
 function matchDatesToProps(state)
 {
   return{
-    articles: state.articles
+    category: state.category
   }
 }
-export default connect(matchDatesToProps,actions)(Articles);
+export default connect(matchDatesToProps,actions)(Category);

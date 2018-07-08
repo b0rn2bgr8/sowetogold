@@ -18,7 +18,7 @@ class Statistics extends React.Component{
                 />
                 <div className="content">
                     <Row>
-                        <Col xs={12} md={4}>
+                        <Col xs={12} md={3}>
                             <Card className="card-chart">
                                 <CardHeader>
                                     <CardTitle>Articles online</CardTitle>
@@ -37,7 +37,7 @@ class Statistics extends React.Component{
                                 </CardFooter>
                             </Card>
                         </Col>
-                        <Col xs={12} md={4}>
+                        <Col xs={12} md={3}>
                             <Card className="card-chart">
                                 <CardHeader>
                                     <CardTitle>Videos online</CardTitle>
@@ -56,7 +56,7 @@ class Statistics extends React.Component{
                                 </CardFooter>
                             </Card>
                         </Col>
-                        <Col xs={12} md={4}>
+                        <Col xs={12} md={3}>
                             <Card className="card-chart">
                                 <CardHeader>
                                     <CardTitle>Adverts online</CardTitle>
@@ -70,6 +70,26 @@ class Statistics extends React.Component{
                                     <Stats>
                                         {[
                                             { i: "now-ui-icons ui-2_time-alarm", t: "Last 7 days"}
+                                        ]}
+                                    </Stats>
+                                </CardFooter>
+                            </Card>
+                        </Col>
+
+                        <Col xs={12} md={3}>
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <CardTitle>Online users</CardTitle>
+                                    <hr />
+                                </CardHeader>
+                                <CardBody>
+                                        <h6>1 542 </h6><br/>
+                                        <h6>online</h6>
+                                </CardBody>
+                                <CardFooter>
+                                    <Stats>
+                                        {[
+                                            { i: "now-ui-icons arrows-1_refresh-69", t: "Just Updated"}
                                         ]}
                                     </Stats>
                                 </CardFooter>
