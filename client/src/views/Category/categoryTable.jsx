@@ -110,7 +110,6 @@ class Category extends React.Component{
             </div>
           )
          }]
-         console.log(category)
         //  console.log(articles)
         return (
           <div>
