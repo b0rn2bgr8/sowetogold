@@ -1,6 +1,7 @@
 import React from 'react';
 import {Collapse,Navbar,NavbarToggler, NavbarBrand,Nav,NavItem,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Navs extends React.Component {
   constructor(props) {
@@ -24,9 +25,39 @@ export default class Navs extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink to="/" className="nav-link">Home</NavLink>
+      
+            <NavItem>
+                <NavLink to="Home" className="nav-link">Home</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink to="News" className="nav-link">News</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="Entertainment" className="nav-link">Entertainment</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="Sport" className="nav-link">Sport</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="CommunityService" className="nav-link">CommunityService</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="Classified" className="nav-link">Classified</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="Video" className="nav-link">Video</NavLink>
+              </NavItem>
+
+
+              <NavItem>
+                <NavLink to="AboutUs" className="nav-link">About Us</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="Contact" className="nav-link">Contact</NavLink>
+              </NavItem>
+              {/* <NavItem>
+                <NavLink to="/" className="nav-link">Home</NavLink>
+              </NavItem> */}
               {(this.props.user.role === "admin") &&<NavItem>
                 <NavLink to="/admin" className="nav-link">Manage</NavLink>
               </NavItem>}

@@ -3,8 +3,8 @@ import {Card, CardHeader, CardBody, CardFooter, CardTitle, Row, Col} from 'react
 // react plugin used to create charts
 import { Line } from 'react-chartjs-2';
 // function that returns a color based on an interval of numbers
-import { PanelHeader, Stats} from 'components';
-import {dashboardPanelChart,} from 'variables/charts.jsx';
+import { PanelHeader, Stats} from '../../components';
+import {dashboardPanelChart,} from '../../variables/charts.jsx';
 
 class Statistics extends React.Component{
     render(){
