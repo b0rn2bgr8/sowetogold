@@ -43,6 +43,7 @@ var articleRoutes = require('./routes/articles.routes');
 app.use(categoryRoutes);
 app.use(articleRoutes);
 
+app.get("*", )
 app.listen(secret.port, ()=>{
     console.log("listening on port " + secret.port);
 });

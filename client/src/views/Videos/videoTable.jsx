@@ -3,7 +3,7 @@ import ReactTable from "react-table";
 //import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
 import {Row, Col,Card, CardHeader, CardBody, Button} from 'reactstrap';
-import { PanelHeader } from 'components';
+import { PanelHeader } from '../../components';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 //Loading spinner

@@ -2,13 +2,13 @@ const Article = require('../models/article.model');
 const router = require('express').Router();
 
 //Creating a POST endpoint
-    router.post('/articles', (req, res)=>{
+    router.post('/api/articles', (req, res)=>{
     var article = new Article();
     let new_article = new Article({
         title:req.body.title,
         body:req.body.body,
         status:req.body.status,
-        picture: req.body.picture,
+        // picture: req.body.picture,
         });
 
         new_article.category.push(req.body.category)
@@ -19,9 +19,9 @@ const router = require('express').Router();
 });
 
 //creating a GET articles endpoint to get/retrive all information from DB
-router.get('/articles', (req, res,next)=>{
+router.get('/api/articles', (req, res,next)=>{
     //Function to get all articles from a database that were created based on the UserSchema
-    Article.find({})
+    Article.find()
     .populate('category')
         //used for checcking for errors
      .exec((err,article)=>{;
@@ -33,15 +33,22 @@ router.get('/articles', (req, res,next)=>{
 });
 
 //Request for getting a single article (GET single article)
-router.get('/articles/:id', function(req, res){
+router.get('/api/articles/:id', function(req, res){
     Article.findOne({_id:req.params.id}, function(err,foundArticle){
         if(err) return next(err);
         res.json(foundArticle);
     });
 });
 
+router.get('/api/articles/q', function(req, res){
+    Article.find({_id:req.params.id}, function(err,foundArticle){
+        if(err) return next(err);
+        res.json(foundArticle);
+    });
+});
+
 //Request for and deleting an article (by single article)
-router.delete('/articles/:id', function(req, res){
+router.delete('/api/articles/:id', function(req, res){
     Article.findByIdAndRemove({_id:req.params.id}, function(err,foundArticle){
         if(err) return next(err);
         res.json(foundArticle);
@@ -49,7 +56,7 @@ router.delete('/articles/:id', function(req, res){
 });
 
 //Creating an update request for the category using PUT
-router.put('/articles/:id', function(req,res,next){
+router.put('/api/articles/:id', function(req,res,next){
     Article.findById(req.params.id, function(err,foundArticle){
         if(err) return next(err);
         if(req.body.title){

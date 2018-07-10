@@ -2,7 +2,7 @@ const Category = require('../models/category.model');
 const router = require('express').Router();
 
 //Creating a POST endpoint
-router.post('/category', (req, res)=>{
+router.post('/api/category', (req, res)=>{
     var category = new Category();
     let new_category = new Category({
         name:req.body.name,
@@ -15,7 +15,7 @@ router.post('/category', (req, res)=>{
 });
 
 //creating a GET category endpoint to get/retrive all information from DB
-router.get('/category', (req, res)=>{
+router.get('/api/category', (req, res)=>{
     //Function to get all category from a database that were created based on the UserSchema
     Category.find({}, function(err, foundCategory){
         //used for checcking for errors
@@ -29,7 +29,7 @@ router.get('/category', (req, res)=>{
     });
 
 //Request for getting a single Users (GET single user)
-router.get('/category/:id', function(req, res){
+router.get('/api/category/:id', function(req, res){
     Category.findOne({_id:req.params.id}, function(err,foundCategory){
         if(err) return next(err);
         res.json(foundCategory);
@@ -37,7 +37,7 @@ router.get('/category/:id', function(req, res){
 });
 
 //Request for and deleting a Category (GET single category)
-router.delete('/category/:id', function(req, res){
+router.delete('/api/category/:id', function(req, res){
     Category.findByIdAndRemove({_id:req.params.id}, function(err,foundCategory){
         if(err) return next(err);
         res.json(foundCategory);
@@ -46,7 +46,7 @@ router.delete('/category/:id', function(req, res){
 });
 
 //Creating an update request for the category using PUT
-router.put('/category/:id', function(req,res,next){
+router.put('/api/category/:id', function(req,res,next){
     Category.findById(req.params.id, function(err,foundCategory){
         if(err) return next(err);
 

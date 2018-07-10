@@ -3,7 +3,7 @@ import ReactTable from "react-table";
 //import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
 import {Row, Col,Card, CardHeader, CardBody,Modal,Form,ModalHeader,ModalBody,Label,Input,FormGroup,ModalFooter} from 'reactstrap';
-import { PanelHeader } from 'components';
+import { PanelHeader } from '../../components';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 //Loading spinner
@@ -19,9 +19,9 @@ const style = {
 //Style for buttons 
 const styleButton = {
   button: {
-  borderColor: "#f96233",
+  borderColor: "#0ad14c",
   backgroundColor: "#ffffff",
-  color: "#f96233",
+  color: "#0ad14c",
   cursor: "pointer",
   borderWidth: ".9px",
   borderRadius: "30px",
@@ -68,6 +68,7 @@ class Articles extends React.Component{
           isOpen:false,
           //data: makeData()
         }
+        this.closeModal = this.closeModal.bind(this);
     }
     //Components
     componentDidMount(){
@@ -82,6 +83,12 @@ class Articles extends React.Component{
     }
     onHandleDelete(id){
       alert("Delete record number " + id );
+    }
+    
+    closeModal(){
+      this.setState({
+        isOpen : !this.state.isOpen
+      });
     }
 
     render(){
@@ -100,15 +107,22 @@ class Articles extends React.Component{
       },{
          Header: 'Picture',
             Cell: (row) => {
-              return <div><img height={34} src={row.original.ImgPath} alt={"not suppoted"}/></div>
+              return <div>
+                <img height={34} src={this.props.articles.picture} style={{height: 40, width: 'auto' }} alt={"not suppoted"}/>
+                </div>
             },
-            id: "picture"
+            //id: "picture"
        },{
          Header: 'Category',
-         row: "row",
          filterable:false,
-         Cell:(row) =>{
-           return <div>{row._id}</div>
+         Cell: row =>{
+           //console.log("reow", row)
+            return (<div>{(()=>{
+              let cnames = row.original.category.map((c)=>{
+                return c.name;
+              })
+              return cnames.toString()
+            })()}</div>)
          }
        },{
          Header: "Status",
@@ -127,9 +141,7 @@ class Articles extends React.Component{
           </div>
         )
        }]
-
-       //console.log(this.props.articles)
-      //console.log("Categories",this.props.articles.category);
+       console.log(articles)
         return (
           <div>
             <PanelHeader size="sm" />
@@ -152,17 +164,10 @@ class Articles extends React.Component{
                         <ReactTable
                           defaultPageSize={5}
                           className="-striped -highlight"
-                          //loadingText= 'Loading...'
                           data={articles}
                           resolveData={data => data.map(row => {
-                            //row.createdAt = Date(row.createdAt);
-                            //moment().format('llll');
-                            row.createdAt = moment(row.createdAt).format('MMM Do YYYY, h:mm a');
-                            row.category.forEach(el => {
-                              console.log(el)
-                            });
-
-                              return row;
+                              row.createdAt = moment(row.createdAt).format('MMM Do YYYY, h:mm a');
+                                   return row;
                             })}
                             columns={columns}
                             /> :
@@ -174,51 +179,45 @@ class Articles extends React.Component{
                   </Card>
                 </Col>
               </Row>
-  
             </div> 
-            {/* Modal starts here */}
-            <Modal isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}}>
-        <Form>
-                <ModalHeader> Editing article information </ModalHeader>
+            
+                    {/* Modal starts here */}
+                    <Modal isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}} size="lg">
+                        <ModalHeader> Editing article information </ModalHeader>
+                          <ModalBody>
+                            <FormGroup>
+                                    <Label for="select">Select Category</Label>
+                                    <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select">
+                                        {this.props.category ? (
+                                            this.props.category.map((data,index)=>(
+                                              <option key={index} value={data._id}>{data.name}</option>
+                                            ))
+                                        ): null}
+                                    </Input>
+                                </FormGroup>
 
-                <ModalBody>
+                                <FormGroup>
+                                  <Label for="article">Article</Label>
+                                  <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} name="article" id="article" />
+                                </FormGroup> 
+                              
+                                <FormGroup>
+                                    <Label for="text">Text Area</Label>
+                                    <Input type="textarea" onChange={(e)=>{this.setState({body: e.target.value})}} name="textarea" id="textarea" />
+                                </FormGroup>
 
-                <FormGroup>
-                        <Label for="select">Select Category</Label>
-                        <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select">
-                            {this.props.category ? (
-                                this.props.category.map((data,index)=>(
-                                  <option key={index} value={data._id}>{data.name}</option>
-                                ))
-                            ): null}
-                        </Input>
-                    </FormGroup>
+                                <FormGroup>
+                                    <Label for="File">File</Label>
+                                        <Input type="file" onChange={(e)=>{this.setState({picture: e.target.value})}} sm={2} name="file" id="File" />
+                                </FormGroup>
+                          </ModalBody>
 
-                    <FormGroup>
-                      <Label for="article">Article</Label>
-                      <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} name="article" id="article" />
-                    </FormGroup> 
-                    
-                    <FormGroup>
-                        <Label for="text">Text Area</Label>
-                        <Input type="textarea" onChange={(e)=>{this.setState({body: e.target.value})}} name="textarea" id="textarea" />
-                    </FormGroup>
-
-                    <FormGroup>
-                        <Label for="File">File</Label>
-                            <Input type="file" onChange={(e)=>{this.setState({picture: e.target.value})}} sm={2} name="file" id="File" />
-                    </FormGroup>
-
-                </ModalBody>
-
-                <ModalFooter>
-                      <button style={styleButton.button} type="submit" outline color="success">Save</button>
-                      <button onClick={this.toggle} style={clearButton.button} type="close" class="btn btn-secondary">Cancel</button>
-                </ModalFooter>
-
-        </Form>
-     </Modal> 
-        </div>
+                          <ModalFooter>
+                                <button style={styleButton.button} >Save Changes</button>
+                                <button onClick={this.closeModal} style={clearButton.button} >Cancel</button>
+                          </ModalFooter>
+                  </Modal> 
+              </div>
         );
     }
 }

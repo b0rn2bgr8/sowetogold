@@ -1,8 +1,8 @@
-import Statistics from 'views/Statistics/Statistics.jsx';
-import Articles from 'views/Articles/Articles.jsx';
-import Category from 'views/Category/Category.jsx';
-import advertisements from 'views/advertisements/advertisements.jsx';
-import Videos from 'views/Videos/Videos.jsx';
+import Statistics from '../views/Statistics/Statistics.jsx';
+import Articles from '../views/Articles/Articles.jsx';
+import Category from '../views/Category/Category.jsx';
+import advertisements from '../views/advertisements/advertisements.jsx';
+import Videos from '../views/Videos/Videos.jsx';
 
 var dashRoutes = [
     { path: "/admin/", name: "Statistics", icon: "business_chart-bar-32", exact: true, component: Statistics},
