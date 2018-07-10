@@ -86,7 +86,9 @@ class Articles extends React.Component{
     }
     
     closeModal(){
-      this.setState({isOpen : false})
+      this.setState({
+        isOpen : !this.state.isOpen
+      });
     }
 
     render(){
@@ -105,14 +107,16 @@ class Articles extends React.Component{
       },{
          Header: 'Picture',
             Cell: (row) => {
-              return <div><img height={34} src={row.original.ImgPath} alt={"not suppoted"}/></div>
+              return <div>
+                <img height={34} src={this.props.articles.picture} style={{height: 40, width: 'auto' }} alt={"not suppoted"}/>
+                </div>
             },
-            id: "picture"
+            //id: "picture"
        },{
          Header: 'Category',
          filterable:false,
          Cell: row =>{
-           console.log("reow", row)
+           //console.log("reow", row)
             return (<div>{(()=>{
               let cnames = row.original.category.map((c)=>{
                 return c.name;
@@ -137,7 +141,7 @@ class Articles extends React.Component{
           </div>
         )
        }]
-
+       console.log(articles)
         return (
           <div>
             <PanelHeader size="sm" />
@@ -178,7 +182,7 @@ class Articles extends React.Component{
             </div> 
             
                     {/* Modal starts here */}
-                    <Modal isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}}>
+                    <Modal isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}} size="lg">
                         <ModalHeader> Editing article information </ModalHeader>
                           <ModalBody>
                             <FormGroup>

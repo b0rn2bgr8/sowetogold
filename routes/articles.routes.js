@@ -8,7 +8,7 @@ const router = require('express').Router();
         title:req.body.title,
         body:req.body.body,
         status:req.body.status,
-        picture: req.body.picture,
+        // picture: req.body.picture,
         });
 
         new_article.category.push(req.body.category)
