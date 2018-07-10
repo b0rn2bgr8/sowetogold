@@ -2,6 +2,7 @@ import React from 'react';
 import {Collapse,Navbar,NavbarToggler, NavbarBrand,Nav,NavItem,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import logo from '../../images/logo.png';
 
 export default class Navs extends React.Component {
   constructor(props) {
@@ -21,31 +22,33 @@ export default class Navs extends React.Component {
     return (
       <div>
         <Navbar dark color="dark" expand="md">
-          <NavbarBrand href="/">Soweto Observer</NavbarBrand>
+          <NavbarBrand href="/">
+            <img src={logo} alt="Soweto Observer Logo" style={{height: 60, width: 'auto'}} />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
       
             <NavItem>
-                <NavLink to="Home" className="nav-link">Home</NavLink>
+                <NavLink to="/" className="nav-link"><i className="fa fa-home"></i> Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="News" className="nav-link">News</NavLink>
+                <NavLink to="/News" className="nav-link">News</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="Entertainment" className="nav-link">Entertainment</NavLink>
+                <NavLink to="/category/entertainment" className="nav-link">Entertainment</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="Sport" className="nav-link">Sport</NavLink>
+                <NavLink to="/category/sport" className="nav-link">Sport</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="CommunityService" className="nav-link">CommunityService</NavLink>
+                <NavLink to="/category/community-service" className="nav-link">CommunityService</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="Classified" className="nav-link">Classified</NavLink>
+                <NavLink to="/Classified" className="nav-link">Classified</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="Video" className="nav-link">Video</NavLink>
+                <NavLink to="/Video" className="nav-link">Video</NavLink>
               </NavItem>
 
 

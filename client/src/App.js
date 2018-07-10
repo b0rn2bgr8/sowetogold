@@ -24,6 +24,7 @@ import Property from './views/Home/classified/Property';
 import communityService from './views/Home/communityService/communityService';
 import AboutUs from './views/Home/AboutUs/AboutUs';
 import contact from './views/Home/contact/contact';
+import Category from './views/Home/category/Category';
 
 // Components
 import Navs from './components/Navs/Navs';
@@ -35,6 +36,8 @@ import SimpleSlider from "./components/Slider/Slider";
 class App extends Component {
     componentDidMount(){
         this.props.fetchUser();
+        this.props.fetchArticles();
+        this.props.fetchCategory();
     }
     render() {
         const AdminRoute = ({ component: Component, ...rest }) => (
@@ -53,10 +56,11 @@ class App extends Component {
                         <Navs user={this.props.user} />
                         {/* <Navbar1 user={this.props.user} /> */}
                       
-                        <Route path="/Home"  component={Home} />
+                        <Route path="/" exact  component={Home} />
                         <Route path="/news"   component={news} />
                         <Route path="/entertainment"  component={entertainment} />
                         <Route path="/video"  component={video} />
+                        <Route path="/category/:category" component={Category} />
 
                         <Route path="/Sport"  component={Sport} />
                         <Route path="/Soccer"  component={Soccer} />
