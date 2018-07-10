@@ -4,7 +4,6 @@ import { Card, Button, CardImg, CardLink, CardTitle, CardText, CardDeck, CardSub
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Slider from "react-slick";
 import TopHead from './carouselComponent';
 import AdCorner from './adComponent';
 import { connect } from 'react-redux';
