@@ -9,7 +9,7 @@ export const fetchUser = () => async dispatch => {
 export const fetchArticles = () => async dispatch => {
     const res = await fetch(base+'/articles');
     const data =  await res.json();
-    console.log(data)
+    //console.log(data)
     // console.log("articles", data);
     dispatch({type: FETCH_ARTICLES, payload:data});
 };

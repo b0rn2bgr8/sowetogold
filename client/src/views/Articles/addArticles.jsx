@@ -59,7 +59,7 @@ class Forms extends React.Component{
         this.state = {
             title: "",
             body: "",
-            picture: "",
+            //picture: "",
             category:false,
 
         }
@@ -81,40 +81,60 @@ class Forms extends React.Component{
         this.props.fetchArticles();
       }
     //Request to the database
-            async handleSubmit() {
-                let formData = new FormData();
-            
-                formData.append("title", this.state.title)
-                formData.append("body", this.state.body)
-                formData.append("category", this.state.select)
-                formData.append("picture", this.state.picture)
-            
-            try {
-                let respond = await fetch('http://localhost:8080/articles', {
+        handleSubmit(e) {
+            e.preventDefault();
+            let obj = {
+                "category": this.state.select,
+                "title": this.state.title,
+                "body":this.state.body,
+            }
+            console.log(obj);
+            fetch('http://localhost:8080/articles', {
                 method: 'POST',
-                body: formData
+                headers:{
+                    "Accept":"application/json",
+                    "Content-Type":"application/json"
+                }
+                ,
+                body: JSON.stringify(obj)
+                })
+                    .then((data)=> {
+                    return data.json()
+                }).then((body)=>{
+                    console.log(body);
+                    this.props.history.push('/admin/articles');
                 });
-                let res = await respond.json();
-                console.log(res.response);
+            }
+    //         async handleSubmit() {
+    //             let formData = new FormData();
             
-            } catch(err) {
-                console.log(err)
-        }
-    }
+    //             formData.append("title", this.state.title)
+    //             formData.append("body", this.state.body)
+    //             formData.append("category", this.state.select)
+    //             // formData.append("picture", this.state.picture)
+            
+    //         try {
+    //             let respond = await fetch('http://localhost:8080/articles', {
+    //             method: 'POST',
+    //             body: formData
+    //             });
+    //             let res = await respond.json();
+    //             window.location.href = "/ArticleTable.jsx";
+    //             //window.location.href = '/transaction.php';
+    //             console.log(res.response);
+            
+    //         } catch(err) {
+    //             console.log(err)
+    //     }
+    // }
+
     fileSelectedHandler = event => {
         //console.log(event.target.files[0]);
         this.setState({
             selectedFile:event.target.files[0]
         })
     }
-    // fileUploadHandler = () => {
-    //     const fd = new FormData();
-    //     fd.append('image',this.state.selectedFile, this.state.selectedFile.name);
-    //     axios.post('https://',fd);//add firebase url or any cloud storage url
-    //        then(res => {
-    //            console.log(res);
-    //        });
-    // }
+
     render(){
         return (
             <div>
@@ -130,24 +150,35 @@ class Forms extends React.Component{
                                 <CardBody>
 
                                 <Form onSubmit={this.handleSubmit}>
+
                                     <FormGroup row >
-                                    <Label for="select" sm={2}> Select Category : </Label>
-                                    <Col sm={12} md={3} >
-                                        <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select" >
-                                            {
-                                                this.props.category ? (
-                                                    this.props.category.map((data,index)=>(
-                                                        <option key={index} value={data._id}>{data.name}</option>
-                                                    ))
-                                                ): null }
-                                        </Input>
-                                    </Col>
+                                        <Label for="select" sm={2}> Select Category : </Label>
+                                            <Col sm={12} md={3} >
+                                                <Input type="select" onChange={(e)=>{this.setState({select: e.target.value})}} name="select" id="select" >
+                                                    {
+                                                        this.props.category ? (
+                                                            this.props.category.map((data,index)=>(
+                                                                <option key={index} value={data._id}>{data.name}</option>
+                                                            ))
+                                                        ): null }
+                                                </Input>
+                                            </Col>
                                     </FormGroup>
                                    
                                     <FormGroup row>
                                         <Label for="Title" sm={2}>Title : </Label>
                                             <Col sm={12} md={3} >
-                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Summary of the article ..." required />
+                                                <Input
+                                                value={this.state.title}
+                                                 type="text" 
+                                                 name="title"
+                                                 onChange={ e => {
+                                                     this.setState({title: e.target.value});
+                                                     console.log(this.state.title);
+                                                     }} 
+                                                 placeholder="Summary of the article ..." 
+                                                 required 
+                                                 />
                                             </Col>
                                     </FormGroup>
 
@@ -159,26 +190,25 @@ class Forms extends React.Component{
                                                     formats={Forms.formats}
                                                     value={this.state.body}
                                                     placeholder="article body goes here .. "
-                                                    // onChange={(e)=>{this.setState({body: e.target.value})}}
                                                     onChange={this.onHandleChange}
                                                     required />
                                             </Col>
                                     </FormGroup>
                                     <br />
                                     <br />
-                                    <FormGroup row>
+                                    {/*<FormGroup row>
                                         <Label for="File" sm={2}> </Label>
                                             <Col sm={4} >
                                                 <input type="file" onChange={this.fileSelectedHandler} name="file" id="File" />
-                                                {/* <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" /> */}
+                                                 <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" /> 
                                                 <Col md={10} width={80}>
                                                     <FormText color="muted">
                                                             <FontAwesome.FaFile/> Upload article picture.....
-                                                            {/* <button onClick={this.fileUploadHandler}>Upload</button>     */}
+                                                             <button onClick={this.fileUploadHandler}>Upload</button>     
                                                     </FormText>
                                                 </Col>
                                             </Col>
-                                    </FormGroup>
+                                    </FormGroup>*/}
                                     
                                     <FormGroup check row>
                                         <Col sm={{ size:10,offset:4 }}>
