@@ -22,17 +22,17 @@ class Home extends React.Component {
       <Container>
 
         <Row>
-          <Col md={9}>
+          <Col md={9} sm={12} xs={12}>
             <TopHead />
           </Col>
-          <Col md={3}>
+          <Col md={3} sm={12} xs={12}>
             <AdCorner />
           </Col>
         </Row>
 
         <hr />
         <Row>
-          <Col xs="9">
+          <Col md={9} sm={12} xs={12}>
             <h3 className="lead">Top Stories</h3>
 
 
@@ -76,7 +76,7 @@ class Home extends React.Component {
             </Row>
             
           </Col>
-          <Col xs="3">
+          <Col md={3} sm={12} xs={12}>
 
           </Col>
         </Row>
