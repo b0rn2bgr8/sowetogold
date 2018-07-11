@@ -15,7 +15,7 @@ router.post('/api/category', (req, res)=>{
 });
 
 //creating a GET category endpoint to get/retrive all information from DB
-router.get('/api/category', (req, res)=>{
+router.get('/api/category', (req, res, next)=>{
     //Function to get all category from a database that were created based on the UserSchema
     Category.find({}, function(err, foundCategory){
         //used for checcking for errors

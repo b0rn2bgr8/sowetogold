@@ -50,17 +50,6 @@ export default class Navs extends React.Component {
               <NavItem>
                 <NavLink to="/Video" className="nav-link">Video</NavLink>
               </NavItem>
-
-
-              <NavItem>
-                <NavLink to="AboutUs" className="nav-link">About Us</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="Contact" className="nav-link">Contact</NavLink>
-              </NavItem>
-              {/* <NavItem>
-                <NavLink to="/" className="nav-link">Home</NavLink>
-              </NavItem> */}
               {(this.props.user.role === "admin") &&<NavItem>
                 <NavLink to="/admin" className="nav-link">Manage</NavLink>
               </NavItem>}

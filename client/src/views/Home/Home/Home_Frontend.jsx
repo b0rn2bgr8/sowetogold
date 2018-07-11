@@ -36,41 +36,41 @@ class Home extends React.Component {
           <Col xs="9">
             <h3 className="lead">Top Stories</h3>
 
-            
-              {this.props.articles ? <Row>
+
+            {this.props.articles ?
+              <div className="news-h-scroll">
                 {
                   this.props.articles.map((a, i) => {
                     return (
-                      <Col md={4} key={i}>
-                        <Card>
-                          <CardImg top src="https://cdn.cnn.com/cnnnext/dam/assets/180710080327-01-thai-cave-rescue-0710-overlay-tease.jpg" alt="Card image cap" />
-                          <CardText>{a.title}</CardText>
-                        </Card>
-                      </Col>
+                      <div style={{ height: 250, width: 250, margin: 5 }}>
+                        <img style={{ height: 200, minWidth: 250}}  src={a.picture || "https://cdn.cnn.com/cnnnext/dam/assets/180710080327-01-thai-cave-rescue-0710-overlay-tease.jpg"} alt="Card image cap"  />
+                        <p>{a.title}</p>
+                      </div>
                     )
                   })
                 }
-                </Row>
+              </div>
               :
-              <img src={loading} alt="loading" style={{height: 200, width: 'auto'}} />
-              }
-            
+              <img src={loading} alt="loading" style={{ height: 200, width: 'auto' }} />
+            }
+            <hr />
             <Row>
               <Col md={12}>
-                <ListGroup flush>
-                  <ListGroupItem className="lead" disabled tag="a" href="#">Headlines</ListGroupItem>
+              <h3 className="lead">Headlines</h3>
+                <ListGroup flush className="headlines" style={{height: 400, overflowY: 'scroll'}}>
+                  
                   {this.props.articles ? <div>
                     {
-                  this.props.articles.map((a, i) => {
-                    return (
-                      <ListGroupItem key={i}>{a.title}</ListGroupItem>
-                    )
-                  })
-                }
+                      this.props.articles.map((a, i) => {
+                        return (
+                          <ListGroupItem key={i}>{a.title}</ListGroupItem>
+                        )
+                      })
+                    }
                   </div>
-                  :
-                  
-              <img src={loading} alt="loading" style={{height: 200, width: 200}}/>
+                    :
+
+                    <img src={loading} alt="loading" style={{ height: 200, width: 200 }} />
                   }
                 </ListGroup>
               </Col>

@@ -1,17 +1,24 @@
 const Article = require('../models/article.model');
 const router = require('express').Router();
+const Multer = require('multer');
+const multer = Multer({
+    storage: Multer.memoryStorage()
+});
+const imgUpload = require('../utility/imgUpload');
 
 //Creating a POST endpoint
-    router.post('/api/articles', (req, res)=>{
+    router.post('/api/articles', multer.single("picture"), imgUpload.uploadToGcs, (req, res, next)=>{
+
     var article = new Article();
     let new_article = new Article({
         title:req.body.title,
         body:req.body.body,
         status:req.body.status,
-        // picture: req.body.picture,
+        picture: req.file.cloudStoragePublicUrl,
         });
 
-        new_article.category.push(req.body.category)
+        new_article.category = [req.body.category];
+
         new_article.save(err=>{
         if(err){console.log(err)}
         res.json({response:"New article created"})
