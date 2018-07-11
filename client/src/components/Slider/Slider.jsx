@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css"; 
+// import "slick-carousel/slick/slick-theme.css";
 
 
 class SimpleSlider extends Component {
   render() {
-    var settings = {
-      dots: true,
-      infinite: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      pauseOnHover: true
-    };
+    // var settings = {
+    //   dots: true,
+    //   infinite: true,
+    //   slidesToShow: 3,
+    //   slidesToScroll: 1,
+    //   autoplay: true,
+    //   autoplaySpeed: 2000,
+    //   pauseOnHover: true
+    // };
     return (
       <div>
-        <h2>Pause On Hover</h2>
+        {/* <h2>Pause On Hover</h2>
         <Slider {...settings}>
           <div>
             <h3>1</h3>
@@ -37,7 +37,7 @@ class SimpleSlider extends Component {
           <div>
             <h3>6</h3>
           </div>
-        </Slider>
+        </Slider> */}
       </div>
     );
   }
