@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactQuill from "react-quill/dist/index";
@@ -18,14 +17,6 @@ import {
     FormText
 } from "reactstrap";
 import { PanelHeader, Button } from "../../components";
-=======
-import React from 'react';
-import {Link} from 'react-router-dom';
-import ReactQuill from 'react-quill/dist/index';
-import 'react-quill/dist/quill.snow.css';
-import { Card, CardBody, CardHeader, CardTitle, Row, Col,Button,Form,FormGroup, Label,Input, FormText } from 'reactstrap';
-import { PanelHeader } from '../../components';
->>>>>>> 3328bb181ddbb455764fc9cdc50d44d187df687a
 
 import { connect } from "react-redux";
 import * as actions from "../../actions";
@@ -101,7 +92,6 @@ class Forms extends React.Component {
         this.props.fetchArticles();
     }
     //Request to the database
-<<<<<<< HEAD
     async handleSubmit(e) {
         e.preventDefault();
         let formdata = new FormData();
@@ -123,55 +113,6 @@ class Forms extends React.Component {
             console.log(error);
         }
 
-=======
-        handleSubmit(e) {
-            e.preventDefault();
-            let obj = {
-                "category": this.state.select,
-                "title": this.state.title,
-                "body":this.state.body,
-            }
-            console.log(obj);
-            fetch('http://localhost:8080/api/articles', {
-                method: 'POST',
-                headers:{
-                    "Accept":"application/json",
-                    "Content-Type":"application/json"
-                }
-                ,
-                body: JSON.stringify(obj)
-                })
-                    .then((data)=> {
-                    return data.json()
-                }).then((body)=>{
-                    alert("Articled uploaded successfully ! ")
-                    console.log(body);
-                    this.props.history.push('/admin/articles');
-                });
-            }
-    //         async handleSubmit() {
-    //             let formData = new FormData();
-            
-    //             formData.append("title", this.state.title)
-    //             formData.append("body", this.state.body)
-    //             formData.append("category", this.state.select)
-    //             // formData.append("picture", this.state.picture)
-            
-    //         try {
-    //             let respond = await fetch('http://localhost:8080/articles', {
-    //             method: 'POST',
-    //             body: formData
-    //             });
-    //             let res = await respond.json();
-    //             window.location.href = "/ArticleTable.jsx";
-    //             //window.location.href = '/transaction.php';
-    //             console.log(res.response);
-            
-    //         } catch(err) {
-    //             console.log(err)
-    //     }
-    // }
->>>>>>> 3328bb181ddbb455764fc9cdc50d44d187df687a
 
     }
 
