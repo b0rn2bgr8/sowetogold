@@ -83,7 +83,7 @@ class Forms extends React.Component{
                 formData.append("picture", this.state.picture)
             
             try {
-                let respond = await fetch('http://localhost:8080/articles', {
+                let respond = await fetch('/api/articles', {
                 method: 'POST',
                 body: formData
                 });

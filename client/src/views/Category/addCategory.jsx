@@ -65,7 +65,7 @@ class Forms extends React.Component{
                 "name": this.state.name,
                 "description": this.state.description,
                 }
-            fetch('http://localhost:8080/api/category', {
+            fetch('/api/category', {
                 method: 'POST',
                 credentials:"include",
                     headers:{
@@ -78,8 +78,7 @@ class Forms extends React.Component{
                     return data.json();
             }).then((body)=>{
                 this.props.fetchCategory(body);
-                alert("Category posted")
-                this.props.history.push('/admin/manage_category');
+                this.props.history.goBack();
             });
 
         }
