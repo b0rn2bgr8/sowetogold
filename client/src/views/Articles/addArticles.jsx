@@ -142,6 +142,7 @@ class Forms extends React.Component {
                                                     name="select"
                                                     id="select"
                                                 >
+                                                <option>-- select category --</option>
                                                     {this.props.category
                                                         ? this.props.category.map((data, index) => (
                                                             <option key={index} value={data._id}>
