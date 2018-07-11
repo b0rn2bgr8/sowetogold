@@ -9,8 +9,7 @@ import TopHead from './carouselComponent';
 import AdCorner from './adComponent';
 import { connect } from 'react-redux';
 import loading from '../../../images/loading.gif';
-
-
+//import renderHTML from 'react-render-html';
 class Home extends React.Component {
   render() {
     var settings = {
@@ -43,10 +42,13 @@ class Home extends React.Component {
                   this.props.articles.map((a, i) => {
                     return (
                       <Col md={4} key={i}>
+                      {/* <Link to = "/Category"> */}
                         <Card>
                           <CardImg top src="https://cdn.cnn.com/cnnnext/dam/assets/180710080327-01-thai-cave-rescue-0710-overlay-tease.jpg" alt="Card image cap" />
                           <CardText>{a.title}</CardText>
+                          {/* <CardText>{renderHTML(a.body)}</CardText> */}
                         </Card>
+                        {/* </Link> */}
                       </Col>
                     )
                   })
@@ -76,6 +78,7 @@ class Home extends React.Component {
                 </ListGroup>
               </Col>
             </Row>
+            
           </Col>
           <Col xs="3">
 
