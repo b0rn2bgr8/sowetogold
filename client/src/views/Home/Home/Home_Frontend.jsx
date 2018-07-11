@@ -8,8 +8,7 @@ import TopHead from './carouselComponent';
 import AdCorner from './adComponent';
 import { connect } from 'react-redux';
 import loading from '../../../images/loading.gif';
-
-
+//import renderHTML from 'react-render-html';
 class Home extends React.Component {
   render() {
     var settings = {
@@ -75,6 +74,7 @@ class Home extends React.Component {
                 </ListGroup>
               </Col>
             </Row>
+            
           </Col>
           <Col xs="3">
 
