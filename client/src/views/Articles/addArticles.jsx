@@ -105,7 +105,7 @@ class Forms extends React.Component {
                 body: formdata
             });
             let result = await response.json();
-            console.log(result);
+           this.props.fetchArticles();
             this.props.history.goBack();
         } catch (error) {
             console.log(error);
