@@ -22,6 +22,7 @@ mongoose.connect('mongodb://soweto_observer_db:123456@ds233320.mlab.com:33320/so
 
 app.use(helmet());
 app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(cors({origin: ["http://localhost:3000", "http://localhost:3001"], credentials: true}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -43,7 +44,9 @@ var articleRoutes = require('./routes/articles.routes');
 app.use(categoryRoutes);
 app.use(articleRoutes);
 
-app.get("*", )
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 app.listen(secret.port, ()=>{
     console.log("listening on port " + secret.port);
 });

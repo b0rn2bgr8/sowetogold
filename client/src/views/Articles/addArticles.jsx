@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import ReactQuill from 'react-quill/dist/index';
 import 'react-quill/dist/quill.snow.css';
-// import renderHTML from 'react-render-html';
 import { Card, CardBody, CardHeader, CardTitle, Row, Col,Button,Form,FormGroup, Label,Input, FormText } from 'reactstrap';
 import { PanelHeader } from '../../components';
 
@@ -89,7 +88,7 @@ class Forms extends React.Component{
                 "body":this.state.body,
             }
             console.log(obj);
-            fetch('http://localhost:8080/articles', {
+            fetch('http://localhost:8080/api/articles', {
                 method: 'POST',
                 headers:{
                     "Accept":"application/json",
@@ -101,6 +100,7 @@ class Forms extends React.Component{
                     .then((data)=> {
                     return data.json()
                 }).then((body)=>{
+                    alert("Articled uploaded successfully ! ")
                     console.log(body);
                     this.props.history.push('/admin/articles');
                 });
