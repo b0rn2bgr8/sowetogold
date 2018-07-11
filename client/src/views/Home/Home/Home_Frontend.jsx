@@ -43,10 +43,14 @@ class Home extends React.Component {
                   this.props.articles.map((a, i) => {
                     return (
                       <Col md={4} key={i}>
+                      <Link to={"/viewstory/"+ a._id}>
                         <Card>
                           <CardImg top src="https://cdn.cnn.com/cnnnext/dam/assets/180710080327-01-thai-cave-rescue-0710-overlay-tease.jpg" alt="Card image cap" />
                           <CardText>{a.title}</CardText>
+
                         </Card>
+                        </Link>
+                        
                       </Col>
                     )
                   })

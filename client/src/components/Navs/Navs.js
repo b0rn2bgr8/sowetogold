@@ -52,12 +52,12 @@ export default class Navs extends React.Component {
               </NavItem>
 
 
-              <NavItem>
+              {/* <NavItem>
                 <NavLink to="AboutUs" className="nav-link">About Us</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="Contact" className="nav-link">Contact</NavLink>
-              </NavItem>
+              </NavItem> */}
               {/* <NavItem>
                 <NavLink to="/" className="nav-link">Home</NavLink>
               </NavItem> */}
