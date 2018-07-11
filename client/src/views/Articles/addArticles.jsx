@@ -22,8 +22,6 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 //IMporting all icons from fontAwesome
 import * as FontAwesome from "react-icons/lib/fa";
-// import axios from 'react-axios';
-// import axios from 'axios';
 
 //Style for buttons
 const styleButton = {
@@ -71,7 +69,7 @@ class Forms extends React.Component {
         this.state = {
             title: "",
             body: "",
-            //picture: "",
+            picture: "",
             category: false
         };
         //binding
@@ -206,28 +204,15 @@ class Forms extends React.Component {
                                         </FormGroup>
                                         <br />
                                         <br />
-                                        {/*<FormGroup row>
-                                        <Label for="File" sm={2}> </Label>
-                                            <Col sm={4} >
-                                                <input type="file" onChange={this.fileSelectedHandler} name="file" id="File" />
-                                                 <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" /> 
-                                                <Col md={10} width={80}>
-                                                    <FormText color="muted">
-                                                            <FontAwesome.FaFile/> Upload article picture.....
-                                                             <button onClick={this.fileUploadHandler}>Upload</button>     
-                                                    </FormText>
-                                                </Col>
-                                            </Col>
-                                    </FormGroup>*/}
 
                                         <FormGroup check row>
                                             <Col sm={{ size: 10, offset: 4 }}>
                                                 <button style={styleButton.button} type="submit">
                                                     Submit
-                        </button>
+                                                 </button>
                                                 <button style={clearButton.button} type="reset">
                                                     Clear
-                        </button>
+                                                </button>
                                                 <button
                                                     style={backButton.button}
                                                     onClick={() => {
@@ -235,7 +220,7 @@ class Forms extends React.Component {
                                                     }}
                                                     round
                                                     simple
-                                                >
+                                                    >
                                                     {" "}
                                                     Go back{" "}
                                                 </button>
