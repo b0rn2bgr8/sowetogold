@@ -35,8 +35,9 @@ class Home extends React.Component {
           <Col xs="9">
             <h3 className="lead">Top Stories</h3>
 
-            
-              {this.props.articles ? <Row>
+
+            {this.props.articles ?
+              <div className="news-h-scroll">
                 {
                   this.props.articles.map((a, i) => {
                     return (
@@ -53,27 +54,28 @@ class Home extends React.Component {
                     )
                   })
                 }
-                </Row>
+              </div>
               :
-              <img src={loading} alt="loading" style={{height: 200, width: 'auto'}} />
-              }
-            
+              <img src={loading} alt="loading" style={{ height: 200, width: 'auto' }} />
+            }
+            <hr />
             <Row>
               <Col md={12}>
-                <ListGroup flush>
-                  <ListGroupItem className="lead" disabled tag="a" href="#">Headlines</ListGroupItem>
+              <h3 className="lead">Headlines</h3>
+                <ListGroup flush className="headlines" style={{height: 400, overflowY: 'scroll'}}>
+                  
                   {this.props.articles ? <div>
                     {
-                  this.props.articles.map((a, i) => {
-                    return (
-                      <ListGroupItem key={i}>{a.title}</ListGroupItem>
-                    )
-                  })
-                }
+                      this.props.articles.map((a, i) => {
+                        return (
+                          <ListGroupItem key={i}>{a.title}</ListGroupItem>
+                        )
+                      })
+                    }
                   </div>
-                  :
-                  
-              <img src={loading} alt="loading" style={{height: 200, width: 200}}/>
+                    :
+
+                    <img src={loading} alt="loading" style={{ height: 200, width: 200 }} />
                   }
                 </ListGroup>
               </Col>

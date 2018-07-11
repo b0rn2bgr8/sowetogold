@@ -202,10 +202,39 @@ body::-webkit-scrollbar {
 }
  
 body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px orangered;
 }
  
 body::-webkit-scrollbar-thumb {
-  background-color: darkslategray;
-  outline: 1px solid slategrey;
+  background-color: #101010;
+  outline: 1px solid #101010;
+}
+
+.news-h-scroll{
+    display: flex; 
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.news-h-scroll::-webkit-scrollbar{
+    height: 0.5em;
+    background-color: orangered;
+}
+.news-h-scroll::-webkit-scrollbar-track{
+    
+}
+.news-h-scroll::-webkit-scrollbar-button{
+    
+}
+.news-h-scroll::-webkit-scrollbar-thumb{
+    background-color: #101010;
+    width: 20px;
+    border-radius: 30px;
+}
+
+.headlines::-webkit-scrollbar{
+    width: 0.3em;
+    background-color: orangered;
+}
+.headlines::-webkit-scrollbar-thumb{
+    background-color: #101010;
 }

@@ -3,9 +3,9 @@ const { Schema } = mongoose;
 //Creating a schema model for user information to POST to the database
 const articleSchema = new Schema({
     title: { type: String },
-    // picture: { type: String },
+    picture: { type: String },
     body: { type: String },
-    status: {type : String, default: "draft" ,enum:["published" , "draft" ]},
+    status: { type: String, default: "draft", enum: ["published", "draft", "expired"] },
     isDraft: { type: Boolean, default: true },
     author: [{ type: Schema.Types.ObjectId, ref: "User" }],
     category: [{ type: Schema.Types.ObjectId, ref: "Category" }],

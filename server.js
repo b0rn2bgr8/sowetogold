@@ -7,13 +7,12 @@ cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 passport = require('passport'),
-secret = require('./config/secret');
+secret = require('./config/secret'),
 path = require('path');
 
 const app = express();
 
-// // mongoose.connect(secret.database, (err)=>{
-mongoose.connect('mongodb://soweto_observer_db:123456@ds233320.mlab.com:33320/soweto_observer_db', (err)=>{
+ mongoose.connect(secret.database, (err)=>{
     if(err){
         console.log(err.message)
     }
