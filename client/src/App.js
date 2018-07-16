@@ -31,6 +31,7 @@ import Navs from './components/Navs/Navs';
 import Navbar1 from './components/Navbars/Navbar1';
 import Footer from './components/Footer/Footer';
 import SimpleSlider from "./components/Slider/Slider";
+import ViewStory from './views/ViewFullStory';
 
 
 class App extends Component {
@@ -79,7 +80,7 @@ class App extends Component {
                         <Route path="/communityService"  component={communityService} />
                         <Route path="/AboutUs"  component={AboutUs} />
                         <Route path="/contact"  component={contact} />
-
+                        <Route path="/viewstory/:filter"  component={ViewStory} />
                         {/* <Footer user={this.props.user} /> */}
                         <AdminRoute path="/admin" component={Admin} />
                     </div>
