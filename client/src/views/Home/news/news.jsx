@@ -1,13 +1,14 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import {  } from 'reactstrap';
-import { Card, CardImg, CardTitle, CardText, CardDeck, CardBody,CardSubtitle, CardLink } from 'reactstrap';
+
+import { Card, CardImg, CardTitle, CardText, CardDeck, CardBody,CardSubtitle, Container, CardLink } from 'reactstrap';
 
 
 class news extends React.Component {
   render() {
     return (
-      <div className='Container'>
+      <Container>
         <Row>
           <Col md="9">   
        
@@ -58,23 +59,10 @@ class news extends React.Component {
                 </CardDeck>
             </Col>
           <Col md="3">
-           <div>
-            <Card>
-              <CardBody>
-                <CardTitle>Advertisments</CardTitle>
-                <CardSubtitle>Hey there!</CardSubtitle>
-              </CardBody>
-              <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-              <CardBody>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                <CardLink href="#">Button</CardLink>
-              
-              </CardBody>
-            </Card>
-          </div>
+         
           </Col>
         </Row>
-      </div>
+      </Container>
     );
   }
 }

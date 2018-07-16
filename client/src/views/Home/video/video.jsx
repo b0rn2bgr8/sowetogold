@@ -3,14 +3,15 @@ import { Container, Row, Col, CardImg } from 'reactstrap';
 import { Media } from 'reactstrap';
 
 
+
 class video extends React.Component {
   render() {
     return (
-      <div className='Container'>
+      <Container>
         <Row>
           <Col md="9">
            <Media className='Media_card'>
-            <Media heading left href="#">
+            <Media heading left href="#"> 
                <CardImg className='CardImg' top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
               </Media>
               <Media body className='Media_body'>
@@ -27,9 +28,11 @@ class video extends React.Component {
               </Media>
              </Media>
             </Col>
-          <Col md="3">Ads</Col>
+          <Col md="3">
+         
+          </Col>
         </Row>
-      </div>
+      </Container>
     );
   }
 }

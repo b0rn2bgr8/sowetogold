@@ -12,17 +12,18 @@ const items = [
   {
     src: 'https://www.moafrikatours.com/wp-content/uploads/2016/02/Soweto-Towers_Low-Resolution-1.jpg',
     altText: 'Slide 1',
-    caption: 'Slide 1'
+    caption: 'Not clear that North Korea'
   },
   {
     src: 'http://www.slate.com/content/dam/slate/articles/news_and_politics/roads/2014/07/140717_RK_Soweto_Commandos.jpg.CROP.promovar-mediumlarge.jpg',
     altText: 'Slide 2',
-    caption: 'Slide 2'
+    caption: 'Russia 2018: Croatia World Cup squad '
   },
   {
     src: 'https://sowetourban.co.za/wp-content/uploads/sites/112/2015/03/protest-protea-Medium.jpg',
     altText: 'Slide 3',
-    caption: 'Slide 3'
+    caption: 'NATO summit: Trump accuses Germany of being a captive'
+
   }
 ];
 

@@ -83,6 +83,7 @@ class App extends Component {
                         <Route path="/viewstory/:filter"  component={ViewStory} />
                         {/* <Footer user={this.props.user} /> */}
                         <AdminRoute path="/admin" component={Admin} />
+                     
                     </div>
                 </Router>
             </div>
