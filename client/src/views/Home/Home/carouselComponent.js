@@ -6,20 +6,21 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
+import {connect} from 'react-redux';
 
 const items = [
   {
-    src: 'https://cdn.cnn.com/cnnnext/dam/assets/180710080327-01-thai-cave-rescue-0710-overlay-tease.jpg',
+    src: 'https://www.moafrikatours.com/wp-content/uploads/2016/02/Soweto-Towers_Low-Resolution-1.jpg',
     altText: 'Slide 1',
     caption: 'Not clear that North Korea'
   },
   {
-    src: 'https://tse2.mm.bing.net/th?id=OIP.mVkhKrSdz3yXJ1JFNGbvHwHaEJ&pid=15.1&P=0&w=270&h=152',
+    src: 'http://www.slate.com/content/dam/slate/articles/news_and_politics/roads/2014/07/140717_RK_Soweto_Commandos.jpg.CROP.promovar-mediumlarge.jpg',
     altText: 'Slide 2',
     caption: 'Russia 2018: Croatia World Cup squad '
   },
   {
-    src: 'https://media.vanityfair.com/photos/5761aeef44f7e758217b399f/master/w_960,c_limit/donald-trump-media-news.jpg',
+    src: 'https://sowetourban.co.za/wp-content/uploads/sites/112/2015/03/protest-protea-Medium.jpg',
     altText: 'Slide 3',
     caption: 'NATO summit: Trump accuses Germany of being a captive'
 
@@ -37,6 +38,7 @@ class TopHead extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
+  
   onExiting() {
     this.animating = true;
   }
@@ -64,7 +66,7 @@ class TopHead extends Component {
 
   render() {
     const { activeIndex } = this.state;
-
+    
     const slides = items.map((item) => {
       return (
         <CarouselItem

@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 import renderHTML from 'react-render-html';
 import AdCorner from './Home/Home/adComponent';
 import { connect } from 'react-redux';
-import loading from '../images/loading.gif';
+import loading from '../images/Loading_icon.gif';
+import Moment from 'react-moment';
+import * as FontAwesome from 'react-icons/lib/fa'
 
 
 class ViewStory extends React.Component {
@@ -20,7 +22,7 @@ class ViewStory extends React.Component {
             slidesToScroll: 1
         };
 
-        console.log('mosima', this.props.match.params.filter)
+        //console.log('mosima', this.props.match.params.filter)
         return (
             <Container>
 
@@ -48,9 +50,20 @@ class ViewStory extends React.Component {
 
                                                 <Card>
                                                     <CardText><h2>{a.title}</h2></CardText>
-                                                    <CardImg top src="https://cdn.cnn.com/cnnnext/dam/assets/180710080327-01-thai-cave-rescue-0710-overlay-tease.jpg" alt="Card image cap" /> 
+                                                      <div class="container">
+                                                            <Row>
+                                                                <Col></Col>
+                                                                <Col></Col>
+                                                                <Col></Col>
+                                                                <Col><i class="fa fa-clock"></i> <Moment  format="DD MMM YYYY HH:mm a">{a.createdAt}</Moment></Col>
+                                                             </Row>
+                                                            
+                                                        </div>
+                                                     
+                                                    <CardImg top src={a.picture} alt="Card image cap" /> 
                                                     <CardBody> {renderHTML(a.body)}
                                                     </CardBody>
+
                                                 </Card>
 
 
@@ -63,7 +76,7 @@ class ViewStory extends React.Component {
                             }
                         </Row>
                             :
-                            <img src={loading} alt="loading" style={{ height: 200, width: 'auto' }} />
+                            <img src={loading} alt="loading" style={{ paddingLeft: '35%', height: 200, width: 'auto' }} />
                         }
 
                         <Row>
