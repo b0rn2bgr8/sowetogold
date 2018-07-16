@@ -52,10 +52,9 @@ class ViewStory extends React.Component {
                                                     <CardText><h2>{a.title}</h2></CardText>
                                                       <div class="container">
                                                             <Row>
-                                                                <Col></Col>
-                                                                <Col></Col>
-                                                                <Col></Col>
                                                                 <Col><i class="fa fa-clock"></i> <Moment  format="DD MMM YYYY HH:mm a">{a.createdAt}</Moment></Col>
+                                                                <Col></Col>
+                                                                <Col></Col>
                                                              </Row>
                                                             
                                                         </div>

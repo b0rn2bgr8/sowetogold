@@ -52,7 +52,7 @@ class Home extends React.Component {
                 }
               </div>
               :
-              <img src={loading} alt="loading" style={{ paddingLeft: '50%', height: 200, width: 'auto' }} />
+              <img src={loading} alt="loading" style={{ paddingLeft: '350%', height: 200, width: 'auto' }} />
             }
             <hr />
             <Row>
@@ -74,7 +74,7 @@ class Home extends React.Component {
                   </div>
                     :
 
-                    <img src={loading} alt="loading" style={{ height: 150, width: 200 }} />
+                    <img src={loading} alt="loading" style={{paddingLeft: '35%', height: 150, width: 200 }} />
                   }
                 </ListGroup>
               </Col>
