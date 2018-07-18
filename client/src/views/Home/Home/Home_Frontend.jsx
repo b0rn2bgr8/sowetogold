@@ -27,6 +27,7 @@ class Home extends React.Component {
           </Col>
           <Col md={3} sm={12} xs={12}>
             <AdCorner />
+            <div><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div>
           </Col>
         </Row>
 
@@ -52,7 +53,7 @@ class Home extends React.Component {
                 }
               </div>
               :
-              <img src={loading} alt="loading" style={{ paddingLeft: '350%', height: 200, width: 'auto' }} />
+              <img src={loading} alt="loading" style={{ paddingLeft: '35%', height: 200, width: 'auto' }} />
             }
             <hr />
             <Row>
@@ -74,7 +75,7 @@ class Home extends React.Component {
                   </div>
                     :
 
-                    <img src={loading} alt="loading" style={{paddingLeft: '35%', height: 150, width: 200 }} />
+                    <img src={loading} alt="loading" style={{paddingLeft: '35%', height: 200, width: 200 }} />
                   }
                 </ListGroup>
               </Col>
