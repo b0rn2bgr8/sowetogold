@@ -25,10 +25,14 @@ class Home extends React.Component {
           <Col md={9} sm={12} xs={12}>
             <TopHead />
           </Col>
+
+          
           <Col md={3} sm={12} xs={12}>
             <AdCorner />
           </Col>
         </Row>
+
+
 
         <hr />
         <Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, CardImg } from 'reactstrap';
 import { Media } from 'reactstrap';
-
+import { Player } from 'video-react';
 
 
 class video extends React.Component {
@@ -12,7 +12,8 @@ class video extends React.Component {
           <Col md="9">
            <Media className='Media_card'>
             <Media heading left href="#"> 
-               <CardImg className='CardImg' top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+          
+                   <CardImg className='CardImg' top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
               </Media>
               <Media body className='Media_body'>
                <Media heading>
