@@ -19,7 +19,7 @@ class Home extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <Container>
+      <Container style={{paddingTop: 100}}>
 
         <Row>
           <Col md={9} sm={12} xs={12}>
@@ -27,7 +27,6 @@ class Home extends React.Component {
           </Col>
           <Col md={3} sm={12} xs={12}>
             <AdCorner />
-            <div><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div>
           </Col>
         </Row>
 
@@ -65,8 +64,7 @@ class Home extends React.Component {
                     {
                       this.props.articles.map((a, i) => {
                         return (
-                          <Link to={"/viewstory/"+ a._id}>
-                                                        
+                          <Link to={"/viewstory/"+ a._id}>                 
                               <ListGroupItem key={i}>{a.title}</ListGroupItem>
                           </Link>
                         )
@@ -83,7 +81,7 @@ class Home extends React.Component {
             
           </Col>
           <Col md={3} sm={12} xs={12}>
-
+          <div class="fb-page" data-href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs">Soweto Observer</a></blockquote></div>
           </Col>
         </Row>
       </Container>

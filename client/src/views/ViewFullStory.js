@@ -24,7 +24,7 @@ class ViewStory extends React.Component {
 
         //console.log('mosima', this.props.match.params.filter)
         return (
-            <Container>
+            <Container style={{paddingTop: 100}}>
 
                 <Row>
                     <Col md={9}>
@@ -35,7 +35,7 @@ class ViewStory extends React.Component {
                     </Col>
                 </Row>
 
-                <hr />
+                
                 <Row>
                     <Col xs="9">
                         
