@@ -253,17 +253,20 @@ body::-webkit-scrollbar-thumb {
     left: 0;
   }
 
-  .lead{
-      padding: 0px;
-  }
+
 
   .CategoryImage{
-      margin-top: 0px;
+      margin-bottom: 10px;   
   }
 
 .Jumbotron{
     margin: 0px;
     padding: 0px;
-   
+    height: 105px; 
 }
 
+.Headlines{
+    margin:15px;
+    margin-top: 10px;
+   
+}

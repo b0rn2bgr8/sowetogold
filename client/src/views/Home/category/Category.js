@@ -13,17 +13,16 @@ class Category extends React.Component {
                 <Row>
                     <Col md="9">
                         <div className="Jumbotron">
-                            <Jumbotron>
+                            <Jumbotron style={{ textAlign:'center', height:'0px', paddingBottom:'55px', paddingTop:'40px', margin:'0px' }} >
                                 <h3 className="lead">{(this.props.match.params.category).toUpperCase()}</h3>
                             </Jumbotron>
                         </div>
                         <Row>
                             <Col md={12}>
 
-                                <div>
-                                    <Card className="CategoryImage">
-                                        <img width="100%" height="300" src="https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg" alt="Card image cap" />
-                                    </Card>
+                                <div className="CategoryImage">
+                                        <img width="100%" height="300" paddingBottom="15px" src="https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg" alt="Card image cap" />
+                        
                                     <SmallCard />
                                 </div>
                             </Col>
@@ -39,10 +38,6 @@ class Category extends React.Component {
 }
 
 export default Category;
-
-
-
-
 
 
 
