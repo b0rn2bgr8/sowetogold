@@ -7,6 +7,7 @@
     
     
 }
+
 .tim-row{
     margin-bottom: 20px;
 }
@@ -253,3 +254,15 @@ body::-webkit-scrollbar-thumb {
     position: sticky;
     top: 0;
 }
+.fb-page{
+    position: fixed; /* Safari */
+    position: sticky;
+    top: 0; 
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
+  height: 50px;
+}
+
