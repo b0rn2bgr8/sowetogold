@@ -194,6 +194,7 @@
     padding-left:15px;
     padding-bottom: 15px;
     padding-right: 15px;
+    padding-top: 15px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
 }
 
@@ -249,6 +250,7 @@ body::-webkit-scrollbar-thumb {
     background-color: #101010;
 }
 
+<<<<<<< HEAD
 .adCard{
     position: fixed; /* Safari */
     position: sticky;
@@ -266,3 +268,35 @@ body::-webkit-scrollbar-thumb {
   height: 50px;
 }
 
+=======
+/* video */
+
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+  }
+   
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+
+  .CategoryImage{
+      margin-bottom: 10px;   
+  }
+
+.Jumbotron{
+    margin: 0px;
+    padding: 0px;
+    height: 105px; 
+}
+
+.Headlines{
+    margin:15px;
+    margin-top: 10px;
+   
+}
+>>>>>>> ccefddb05cd839060c10ae6cf16d4d125026cc61
