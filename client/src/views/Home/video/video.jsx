@@ -2,13 +2,12 @@ import React from 'react';
 import { Container, Row, Col, CardImg } from 'reactstrap';
 import AdCorner from '../Home/adComponent';
 import { Media } from 'reactstrap';
-<<<<<<< HEAD
 import ReactPlayer from 'react-player';
 
 
-=======
+
 import { Player } from 'video-react';
->>>>>>> ccefddb05cd839060c10ae6cf16d4d125026cc61
+
 
 
 class video extends React.Component {
@@ -19,7 +18,7 @@ class video extends React.Component {
           <Col md="9">
            <Media className='Media_card'>
             <Media heading left href="#"> 
-<<<<<<< HEAD
+
               <div>
                    <ReactPlayer
           url='https://www.youtube.com/watch?v=rnwlWn603g4'
@@ -27,13 +26,8 @@ class video extends React.Component {
           width='100%'
           height='100%'
         />
- 
-
         </div>
-=======
-          
                    <CardImg className='CardImg' top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
->>>>>>> ccefddb05cd839060c10ae6cf16d4d125026cc61
               </Media>
               <Media body className='Media_body'>
                <Media heading>

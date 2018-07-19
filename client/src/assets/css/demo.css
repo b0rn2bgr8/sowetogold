@@ -250,7 +250,7 @@ body::-webkit-scrollbar-thumb {
     background-color: #101010;
 }
 
-<<<<<<< HEAD
+
 .adCard{
     position: fixed; /* Safari */
     position: sticky;
@@ -268,7 +268,7 @@ body::-webkit-scrollbar-thumb {
   height: 50px;
 }
 
-=======
+
 /* video */
 
 .player-wrapper {
@@ -299,4 +299,4 @@ body::-webkit-scrollbar-thumb {
     margin-top: 10px;
    
 }
->>>>>>> ccefddb05cd839060c10ae6cf16d4d125026cc61
+

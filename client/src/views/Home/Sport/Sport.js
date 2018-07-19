@@ -2,12 +2,12 @@
 import React, { Component } from "react";
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay,Jumbotron, Container, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
+
 import {  } from 'reactstrap';
  
-=======
+
 import AdComp from '../Home/adComponent';
->>>>>>> ccefddb05cd839060c10ae6cf16d4d125026cc61
+
 
 
 
