@@ -270,3 +270,9 @@ body::-webkit-scrollbar-thumb {
     margin-top: 10px;
    
 }
+
+.SmallCard{
+    width: 650px;
+    height: 550px;
+
+}

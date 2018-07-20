@@ -20,9 +20,7 @@ class Category extends React.Component {
                         <Row>
                             <Col md={12}>
 
-                                <div className="CategoryImage">
-                                        <img width="100%" height="300" paddingBottom="15px" src="https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg" alt="Card image cap" />
-                        
+                                <div>
                                     <SmallCard />
                                 </div>
                             </Col>
