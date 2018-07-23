@@ -24,43 +24,23 @@ class ViewStory extends React.Component {
 
         //console.log('mosima', this.props.match.params.filter)
         return (
-            <Container>
-
+            <Container style={{paddingTop: 100}}>
                 <Row>
-                    <Col md={9}>
-
-                    </Col>
-                    <Col md={3}>
-
-                    </Col>
-                </Row>
-
-                <hr />
-                <Row>
-                    <Col xs="9">
-                        
-
-
+                    <Col xs={12} md={9} sm={12}>
                         {this.props.articles ? <Row>
                             {
                                 this.props.articles.map((a, i) => {
                                     if (this.props.match.params.filter === a._id) {
                                         return (
-                                            
-
                                                 <Card>
+                                                    <CardImg top src={a.picture} alt="Card image cap" /> 
                                                     <CardText><h2>{a.title}</h2></CardText>
-                                                      <div class="container">
+                                                    <div class="container">
                                                             <Row>
-                                                                <Col></Col>
-                                                                <Col></Col>
-                                                                <Col></Col>
-                                                                <Col><i class="fa fa-clock"></i> <Moment  format="DD MMM YYYY HH:mm a">{a.createdAt}</Moment></Col>
+                                                                <Col><span className="float-right"><i class="fa fa-clock"></i><Moment  format="DD MMM YYYY HH:mm a">{a.createdAt}</Moment></span></Col>
                                                              </Row>
                                                             
                                                         </div>
-                                                     
-                                                    <CardImg top src={a.picture} alt="Card image cap" /> 
                                                     <CardBody> {renderHTML(a.body)}
                                                     </CardBody>
 
@@ -87,6 +67,7 @@ class ViewStory extends React.Component {
                     </Col>
                     <Col xs="3">
                     <AdCorner/>
+                    <div class="fb-page" data-href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs">Soweto Observer</a></blockquote></div>
                     </Col>
                 </Row>
             </Container>

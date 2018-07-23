@@ -2,7 +2,12 @@
 import React, { Component } from "react";
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay,Jumbotron, Container, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
+
+import {  } from 'reactstrap';
+ 
+
 import AdComp from '../Home/adComponent';
+
 
 
 

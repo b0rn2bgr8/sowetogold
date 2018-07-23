@@ -1,3 +1,16 @@
+
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+#Nav{
+    position: sticky;
+    position: fixed; 
+    z-index: 9;
+    width: 100%;
+    opacity: 1;
+    
+    
+}
+
 .tim-row{
     margin-bottom: 20px;
 }
@@ -240,6 +253,25 @@ body::-webkit-scrollbar-thumb {
     background-color: #101010;
 }
 
+
+.adCard{
+    position: fixed; /* Safari */
+    position: sticky;
+    top: 0;
+}
+.fb-page{
+    position: fixed; /* Safari */
+    position: sticky;
+    top: 0; 
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
+  height: 50px;
+}
+
+
 /* video */
 
 .player-wrapper {
@@ -268,11 +300,82 @@ body::-webkit-scrollbar-thumb {
 .Headlines{
     margin:15px;
     margin-top: 10px;
-   
 }
 
-.SmallCard{
-    width: 650px;
-    height: 550px;
+.HeadlineTag{
+    font-size: 12px;
+}
+
+.footer{
+    background-color: #424242;
+    color: white;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align:  center;
 
 }
+.copyright{
+    text-align: center;
+}
+.footer .copyright {
+    text-align: center; }
+
+    .footer .copyright a {
+        text-align: center;
+        color:white;
+
+    }  
+    .footer .copyright {
+        float: center;} 
+#social:hover {
+    -webkit-transform:scale(1.1); 
+    -moz-transform:scale(1.1); 
+    -o-transform:scale(1.1); 
+    }
+    social {
+        -webkit-transform:scale(0.8);
+        /* Browser Variations: */
+    -moz-transform:scale(0.8);
+    -o-transform:scale(0.8); 
+    -webkit-transition-duration: 0.5s; 
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    }           
+    /* 
+    Only Needed in Multi-Coloured Variation 
+                                       */
+    .social-fb:hover {
+        color: #3B5998;
+    }
+    .social-tw:hover {
+        color: #4099FF;
+    }
+    .social-gp:hover {
+        color: #d34836;
+    }
+    .social-em:hover {
+        color: #f39c12;
+    }
+    .nomargin { margin:10px; padding:0px;text-align: center;font-size: 12px;margin-bottom: 10px;color: white;}
+    .about{
+    text-align: left;
+    
+}
+.abouts{
+    margin: auto;
+    width: 70%;
+
+}
+.abouts h3{
+text-align: center;
+}
+.abouts h4{
+    text-align: center;
+    }
+    .abouts p{
+        text-align: center;
+        }
+.footer{
+    margin-top: 10px;
+}
+

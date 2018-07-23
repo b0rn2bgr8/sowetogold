@@ -19,7 +19,7 @@ class Home extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <Container>
+      <Container style={{paddingTop: 100}}>
 
         <Row>
           <Col md={9} sm={12} xs={12}>
@@ -56,7 +56,7 @@ class Home extends React.Component {
                 }
               </div>
               :
-              <img src={loading} alt="loading" style={{ paddingLeft: '50%', height: 200, width: 'auto' }} />
+              <img src={loading} alt="loading" style={{ paddingLeft: '35%', height: 200, width: 'auto' }} />
             }
             <hr />
             <Row>
@@ -68,8 +68,7 @@ class Home extends React.Component {
                     {
                       this.props.articles.map((a, i) => {
                         return (
-                          <Link to={"/viewstory/"+ a._id}>
-                                                        
+                          <Link to={"/viewstory/"+ a._id}>                 
                               <ListGroupItem key={i}>{a.title}</ListGroupItem>
                           </Link>
                         )
@@ -78,7 +77,7 @@ class Home extends React.Component {
                   </div>
                     :
 
-                    <img src={loading} alt="loading" style={{ height: 150, width: 200 }} />
+                    <img src={loading} alt="loading" style={{paddingLeft: '35%', height: 200, width: 200 }} />
                   }
                 </ListGroup>
               </Col>
@@ -86,7 +85,7 @@ class Home extends React.Component {
             
           </Col>
           <Col md={3} sm={12} xs={12}>
-
+          <div class="fb-page" data-href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs">Soweto Observer</a></blockquote></div>
           </Col>
         </Row>
       </Container>

@@ -21,9 +21,9 @@ export default class Navs extends React.Component {
   render() {
     return (
       <div>
-        <Navbar dark color="dark" expand="md">
+        <Navbar id ="Nav" dark color="dark" expand="md" >
           <NavbarBrand href="/">
-            <img src={logo} alt="Soweto Observer Logo" style={{height: 60, width: 'auto'}} />
+            <img src={logo} alt="Soweto Observer Logo" style={{height: 30, width: 'auto'}} />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
