@@ -75,7 +75,7 @@ class TopHead extends Component {
           key={item.src}
         >
           <img src={item.src} alt={item.altText} style={{height: 350, width: 800}} />
-          <CarouselCaption captionHeader={item.caption} />
+          <CarouselCaption captionHeader={item.caption}/>
         </CarouselItem>
       );
     });
@@ -86,7 +86,7 @@ class TopHead extends Component {
         next={this.next}
         previous={this.previous}
       >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+       
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />

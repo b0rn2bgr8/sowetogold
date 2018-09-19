@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import ReactQuill from 'react-quill/dist/index';
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 // import renderHTML from 'react-render-html';
 import { Card, CardBody, CardHeader, CardTitle, Row, Col,Button,Form,FormGroup, Label,Input, FormText } from 'reactstrap';

@@ -21,9 +21,9 @@ export default class Navs extends React.Component {
   render() {
     return (
       <div>
-        <Navbar dark color="dark" expand="md">
+        <Navbar id ="Nav" dark color="dark" expand="md" >
           <NavbarBrand href="/">
-            <img src={logo} alt="Soweto Observer Logo" style={{height: 60, width: 'auto'}} />
+            <img src={logo} alt="Soweto Observer Logo" style={{height: 30, width: 'auto'}} />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -33,19 +33,19 @@ export default class Navs extends React.Component {
                 <NavLink to="/" className="nav-link"><i className="fa fa-home"></i> Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/News" className="nav-link">News</NavLink>
+                <NavLink to="/category/News" className="nav-link">News</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/category/entertainment" className="nav-link">Entertainment</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/sport" className="nav-link">Sport</NavLink>
+                <NavLink to="/category/sport" className="nav-link">Sport</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/category/community-service" className="nav-link">CommunityService</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/Classified" className="nav-link">Classified</NavLink>
+                <NavLink to="/category/Classified" className="nav-link">Classified</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/Video" className="nav-link">Video</NavLink>

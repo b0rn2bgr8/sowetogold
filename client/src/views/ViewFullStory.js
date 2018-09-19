@@ -33,19 +33,21 @@ class ViewStory extends React.Component {
                                     if (articleId === a._id) {
                                         return (
                                                 <Card>
+                                                    <CardImg top src={a.picture} alt="Card image cap" /> 
                                                     <CardText><h2>{a.title}</h2></CardText>
-                                                        <div class="container">
-                                                                <Row>
-                                                                    <Col></Col>
-                                                                    <Col></Col>
-                                                                    <Col></Col>
-                                                                    <Col><i class="fa fa-clock"></i> <Moment  format="DD MMM YYYY HH:mm a">{a.createdAt}</Moment></Col>
-                                                                </Row>
-                                                                
-                                                            </div>
-                                                        <CardImg top src={a.picture} alt="Card image cap" /> 
-                                                    <CardBody> {renderHTML(a.body)}</CardBody>
-                                                </Card>    
+                                                    <div class="container">
+                                                            <Row>
+                                                                <Col><span className="float-right"><i class="fa fa-clock"></i><Moment  format="DD MMM YYYY HH:mm a">{a.createdAt}</Moment></span></Col>
+                                                             </Row>
+                                                            
+                                                        </div>
+                                                    <CardBody> {renderHTML(a.body)}
+                                                    </CardBody>
+
+                                                </Card>
+
+
+                                             
                                         )
                                     }
                                 })
@@ -58,9 +60,10 @@ class ViewStory extends React.Component {
                             <Col md={12}></Col>
                         </Row>
                     </Col>
-                        <Col xs="3">
-                            <AdCorner/>
-                        </Col>
+                    <Col xs="3">
+                    <AdCorner/>
+                    <div class="fb-page" data-href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Soweto-Observer-337066023393491/?ref=br_rs">Soweto Observer</a></blockquote></div>
+                    </Col>
                 </Row>
             </Container>
         );
