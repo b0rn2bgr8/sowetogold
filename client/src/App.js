@@ -40,6 +40,7 @@ class App extends Component {
         this.props.fetchArticles();
         this.props.fetchCategory();
     }
+    
     render() {
         const AdminRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={(props) => (

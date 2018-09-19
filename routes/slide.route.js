@@ -1,4 +1,4 @@
-const Article = require('../models/article.model');
+const Slide = require('../models/slide.model'); //require the model schema 
 const router = require('express').Router();
 const Multer = require('multer');
 const multer = Multer({
@@ -7,75 +7,78 @@ const multer = Multer({
 const imgUpload = require('../utility/imgUpload');
 
 //Creating a POST endpoint
-    router.post('/api/articles', multer.single("picture"), imgUpload.uploadToGcs, (req, res, next)=>{
-    //router.post('/api/articles', (req, res, next)=>{
-    //var article = new Article();
-    let new_article = new Article({
+router.post('/api/slides', multer.single("picture"), imgUpload.uploadToGcs, (req, res, next)=>{
+    let new_slide = new Slide({
         title:req.body.title,
         body:req.body.body,
         status:req.body.status,
         picture: req.file.cloudStoragePublicUrl,
         });
-        new_article.category = [req.body.category];
-        new_article.save(err=>{
+        new_slide.category = [req.body.category];
+        new_slide.save(err=>{
         if(err){console.log(err)}
-        res.json({response:"New article created"})
+        res.json({response:"New slide created "})
     });
 });
 
 //creating a GET articles endpoint to get/retrive all information from DB
-router.get('/api/articles', (req, res,next)=>{
+router.get('/api/slides', (req, res,next)=>{
     //Function to get all articles from a database that were created based on the UserSchema
-    Article.find()
+    Slide.find()
     .populate('category')
         //used for checcking for errors
-     .exec((err,article)=>{;
+     .exec((err,slide)=>{;
         //checking if the results have been retained.
         if (err) return next(err);
         // return res.json({message:"No Article were found"})
-        res.json(article);
+        res.json(slide);
     });
 });
 
-//Request for getting a single article (GET single article)
-router.get('/api/articles/:id', function(req, res){
-    Article.findOne({_id:req.params.id}, function(err,foundArticle){
+//Request for getting a single slide (GET single slide with ID)
+router.get('/api/slides/:id', function(req, res){
+    Slide.findOne({_id:req.params.id}, function(err,foundSlide){
         if(err) return next(err);
         // res.json(foundArticle);
-        if(!foundArticle) {
+        if(!foundSlide) {
             res.json("Not Found");
         } else {
-            res.json(foundArticle);
+            res.json(foundSlide);
         }
     });
 });
 
-//Request for and deleting an article (by single article)
-router.delete('/api/articles/:id', function(req, res){
-    Article.findByIdAndRemove({_id:req.params.id}, function(err,foundArticle){
+//Request for and deleting an slide (by single slide)
+router.delete('/api/slides/:id', function(req, res){
+    Slide.findByIdAndRemove({_id:req.params.id}, function(err,foundSlide){
         if(err) return res.json(err);
-        res.json("Successfully Removed");
+        res.json("Successfully Removed the slide");
     });
 });
 
 //Creating an update request for the category using PUT
-router.put('/api/articles/:id', function(req,res,next){
-    Article.findById(req.params.id, function(err,foundArticle){
+router.put('/api/slides/:id', function(req,res,next){
+    Slide.findById(req.params.id, function(err,foundSlide){
         if(err) return next(err);
+
+        if(req.body.category){
+            foundSlide.category = req.body.category;
+        }
         if(req.body.title){
-            foundArticle.title = req.body.title;
+            foundSlide.title = req.body.title;
         }
         if(req.body.body){
-            foundArticle.body = req.body.body;
+            foundSlide.body = req.body.body;
         }
-        foundArticle.save(function(err, updatedArticle){
+        foundSlide.save(function(err, updatedSlide){
             if (err) return next(err);
             let obj = {
                 message:"Article updated successfully",
-                updatedArticle: updatedArticle
+                updatedSlide: updatedSlide
             }
             res.json(obj)
         });
     });
 });
+
 module.exports = router;

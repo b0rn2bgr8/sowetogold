@@ -3,8 +3,8 @@ module.exports = {
     port: 8080,
     cookieKey: 'joerihfwohjio3080r0f',
     google: {
-        clientID: '88418002742-ok4cghd3jch12b16h81echcd2oc825cu.apps.googleusercontent.com',
-        clientSecret: 'tDaAB1sGwO1ocEgX-Ag5l9iC',
+        clientID: '879291965051-nen13vajotr11asgcp0gedf1d00k4kee.apps.googleusercontent.com',
+        clientSecret: '9bOJ4lQ8B7vbvEMP97ZV2uEL',
         callbackURL: '/auth/google/callback'
     },
     facebook: {

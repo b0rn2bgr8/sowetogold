@@ -1,7 +1,6 @@
 import { FETCH_CATEGORY, FETCH_USER, FETCH_ARTICLES } from './types';
 import { _fetchArticles, _fetchArticle } from './article';
 
-
 export const fetchArticles = _fetchArticles;
 export const fetchArticle = _fetchArticle;
 
@@ -10,7 +9,6 @@ export const fetchUser = () => async dispatch => {
     const data = await res.json();
     dispatch({ type: FETCH_USER, payload: data.user });
 };
-
 
 export const fetchCategory = () => async dispatch => {
     try {

@@ -19,9 +19,9 @@ const style = {
 //Style for buttons 
 const styleButton = {
   button: {
-  borderColor: "#f96233",
+  borderColor: "#0ad14c",
   backgroundColor: "#ffffff",
-  color: "#f96233",
+  color: "#0ad14c",
   cursor: "pointer",
   borderWidth: ".9px",
   borderRadius: "30px",

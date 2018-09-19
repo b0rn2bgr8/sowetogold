@@ -8,5 +8,6 @@ export default combineReducers({
     auth: authReducer,
     articles: articlesReducers,
     category: categoryReducer,
+    //You dont need this
     article: articleRed
 });

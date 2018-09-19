@@ -19,9 +19,9 @@ const style = {
 //Style for buttons 
 const styleButton = {
   button: {
-  borderColor: "#f96233",
+  borderColor: "#0ad14c",
   backgroundColor: "#ffffff",
-  color: "#f96233",
+  color: "#0ad14c",
   cursor: "pointer",
   borderWidth: ".9px",
   borderRadius: "30px",
@@ -58,12 +58,9 @@ class Articles extends React.Component{
     componentDidMount(){
       // this.props.fetchCategory();
       this.props.fetchArticles();
-     
     }
-
      //Handling the action buttons 
      onHandleEdit(id) {
-      // alert("Edit record " + id);
       this.setState({ isOpen: true })
     }
     onHandleDelete(id) {
@@ -74,8 +71,9 @@ class Articles extends React.Component{
       const data = [
         {
         Number: '1',
-        Name: 'Youth day 2018',
         Video: 'youth.mp4',
+        Category:"Sports",
+        Status: 'Published',
         Summary:'Video took on june 16 2018 , by the streets of soweto ',
         Date: 'Jul 17th 2018', 
       }]
@@ -84,10 +82,9 @@ class Articles extends React.Component{
         Header: '#',
         accessor: 'Number', // String-based value accessors!
         maxWidth:50,
-      }, {
-        Header: 'Name',
-        accessor: 'Name',
-        maxWidth: 150,
+      },{
+        Header: 'Summary',
+        accessor:'Summary',
       },{
         Header:'Video',
         //accessor:'Video',
@@ -96,10 +93,12 @@ class Articles extends React.Component{
         },
         id: "picture"
 
-      },
-      {
-        Header: 'Summary',
-        accessor:'Summary',
+      },{
+        Header: 'Category',
+        accessor: 'Category'
+      },{
+        Header: 'Status',
+        accessor: 'Status',
       },{
         Header: 'Date Posted',
         accessor: 'Date',

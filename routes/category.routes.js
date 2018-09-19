@@ -1,5 +1,25 @@
 const Category = require('../models/category.model');
 const router = require('express').Router();
+// const async  = require('async');
+
+// router.get('/api/category/:categoryname', (req, res, next) => {
+// 	async.waterfall([
+//         (cb)=>{
+//             Category.findOne({name: req.params.categoryname})
+//             .exec((err, c)=>{
+//                 //if()
+//                 cb(null, c)
+//             })
+//         },
+//             (category,cb)=>{
+//             Article.find({category: category._id})
+//             .exec((err, as)=>{
+//             //if();
+//             res.json(as);	
+//             })
+//         }
+//     ])
+// });
 
 //Creating a POST endpoint
 router.post('/api/category', (req, res)=>{
@@ -10,7 +30,7 @@ router.post('/api/category', (req, res)=>{
     });
         new_category.save(err=>{
         if(err){console.log(err)}
-        res.json({response:"success"})
+        res.json({response:"successfully added"})
     });
 });
 
@@ -26,7 +46,7 @@ router.get('/api/category', (req, res, next)=>{
         }
         res.json(foundCategory);
     });
-    });
+});
 
 //Request for getting a single Users (GET single user)
 router.get('/api/category/:id', function(req, res){

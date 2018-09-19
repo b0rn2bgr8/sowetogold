@@ -112,38 +112,65 @@ class Forms extends React.Component{
                                 <Form onSubmit={this.handleSubmit}>
                                 
                                     <FormGroup row>
-                                        <Label for="Title" sm={2}>Title : </Label>
-                                            <Col sm={12} md={3} >
-                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Summary of the video ..." required />
-                                            </Col>
-                                    </FormGroup>
+                                                    <Label for="select" sm={2}>
+                                                        {" "}
+                                                        Select Category :{" "}
+                                                    </Label>
+                                                    <Col sm={12} md={3}>
+                                                        <Input
+                                                            type="select"
+                                                            onChange={e => {
+                                                                this.setState({ select: e.target.value });
+                                                            }}
+                                                            name="select"
+                                                            id="select"
+                                                        >
+                                                        <option>-- select category --</option>
+                                                            {this.props.category
+                                                                ? this.props.category.map((data, index) => (
+                                                                    <option key={index} value={data._id}>
+                                                                        {data.name}
+                                                                    </option>
+                                                                ))
+                                                                : null}
+                                                        </Input>
+                                                    </Col>
+                                        </FormGroup>
 
-                                    <FormGroup row>
-                                        <Label for="textarea" sm={2}>Video body : </Label>
-                                            <Col sm={10}>
-                                                <ReactQuill theme="snow"
-                                                    
-                                                    modules={Forms.modules}
-                                                    formats={Forms.formats}
-                                                    value={this.state.body}
-                                                    placeholder="Video body goes here .. "
-                                                    // onChange={(e)=>{this.setState({body: e.target.value})}}
-                                                    onChange={this.onHandleChange}
-                                                    required />
+                                        <FormGroup row>
+                                            <Label for="Title" sm={2}>
+                                                Title :{" "}
+                                            </Label>
+                                            <Col sm={12} md={3}>
+                                                <Input
+                                                    value={this.state.title}
+                                                    type="text"
+                                                    name="title"
+                                                    onChange={e => {
+                                                        this.setState({ title: e.target.value });
+                                                    }}
+                                                    placeholder="Summary of the video goes here ..."
+                                                    required
+                                                />
                                             </Col>
-                                    </FormGroup>
-                                    <br />
-                                    <br />
-                                    <FormGroup row>
-                                        <Label for="File" sm={2}> </Label>
-                                            <Col sm={10} >
-                                                <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" required />
-                                                    <FormText color="muted">
-                                                            Upload article picture.....    
-                                                    </FormText>
+                                        </FormGroup>
+
+                                        <FormGroup row>
+                                            <Label md={2}>
+                                                Video :
+                                            </Label>
+                                            <Col md={3}>
+                                                <Input
+                                                    type="file"
+                                                    onChange={e => {
+                                                        this.setState({ picture: e.target.files[0] })
+                                                    }}
+                                                    required
+                                                />
+                                                <Button basic round>Pick Video File</Button>
                                             </Col>
-                                    </FormGroup>
-                                    
+                                        </FormGroup>
+
                                     <FormGroup check row>
                                         <Col sm={{ size:10,offset:4 }}>
                                             <button style={styleButton.button} type="submit">Submit</button>
@@ -153,9 +180,10 @@ class Forms extends React.Component{
                                             }}round simple > Go back </button>
                                         </Col>
                                     </FormGroup>
+
                                 </Form>
 
-                                </CardBody>
+                            </CardBody>
                             </Card>
                         </Col>
                     </Row>

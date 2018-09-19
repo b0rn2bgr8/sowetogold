@@ -110,10 +110,7 @@ class Forms extends React.Component {
         } catch (error) {
             console.log(error);
         }
-
-
     }
-
     render() {
         return (
             <div>
@@ -274,6 +271,6 @@ function matchDatesToProps(state) {
     };
 }
 export default connect(
-    matchDatesToProps,
+    matchDatesToProps,//matchStatesToProps
     actions
 )(Forms);

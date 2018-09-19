@@ -77,39 +77,48 @@ class Forms extends React.Component{
                                 <CardBody>
 
                                 <Form onSubmit={this.handleSubmit}>
-                                   
-                                    <FormGroup row>
-                                        <Label for="Title" sm={2} >Title : </Label>
-                                            <Col sm={10} md={3}>
-                                                <Input type="text" onChange={(e)=>{this.setState({title: e.target.value})}} placeholder="Summary of the advert ..." required />
-                                            </Col>
-                                    </FormGroup>
 
                                     <FormGroup row>
-                                        <Label for="textarea" sm={2}>Advert body : </Label>
-                                            <Col sm={10} >
-                                                <ReactQuill theme="snow"
-                                                    
-                                                    modules={Forms.modules}
-                                                    formats={Forms.formats}
-                                                    //value={this.state.body}
-                                                    placeholder="advert body goes here .. "
-                                                    // onChange={(e)=>{this.setState({body: e.target.value})}}
-                                                    //onChange={this.onHandleChange}
-                                                    required />
+                                            <Label for="Title" sm={2}>
+                                                Summary of the advert:{" "}
+                                            </Label>
+                                            <Col sm={12} md={3}>
+                                                <Input
+                                                    // value={this.state.title}
+                                                    type="text"
+                                                    name="title"
+                                                    onChange={e => {
+                                                        this.setState({ title: e.target.value });
+                                                    }}
+                                                    placeholder="Summary of the advert ..."
+                                                    required
+                                                />
                                             </Col>
-                                    </FormGroup>
-                                    <br />
-                                    <br />
+                                        </FormGroup>
+
                                     <FormGroup row>
-                                        <Label for="File" sm={2}> </Label>
-                                            <Col sm={10}>
-                                                <Input type="file" onChange={(e)=>{this.setState({picture: e.target.files[0]})}} name="file" id="File" required />
-                                                    <FormText color="muted">
-                                                            Upload article picture.....    
-                                                    </FormText>
+                                            <Label md={2}>
+                                                Picture :
+                                            </Label>
+                                            <Col md={3}>
+                                                <Input
+                                                    type="file"
+                                                    onChange={e => {
+                                                        this.setState({ picture: e.target.files[0] })
+                                                    }}
+                                                />
+                                                <Button basic round>Pick Media File</Button>
                                             </Col>
-                                    </FormGroup>
+                                        </FormGroup>
+
+                                        <FormGroup row>
+                                            <Label md={2} for="Url">
+                                            Url :
+                                            </Label>
+                                            <Col md={4}>
+                                                <Input type="url" name="url" id="exampleUrl" placeholder="url for advert" />
+                                            </Col>
+                                        </FormGroup>
                                     
                                     <FormGroup check row>
                                         <Col sm={{ size:10,offset:4 }}>

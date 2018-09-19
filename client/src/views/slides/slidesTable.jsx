@@ -1,34 +1,31 @@
 import React from 'react';
 import ReactTable from "react-table";
+//import {Link} from 'react-router-dom';
 import 'react-table/react-table.css'
 import {Row, Col,Card, CardHeader, CardBody} from 'reactstrap';
 import { PanelHeader } from '../../components';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
-//Loading spinner
-// import MDSpinner from "react-md-spinner";
-// import moment from 'moment';
 //IMporting all icons from fontAwesome
 import * as FontAwesome from 'react-icons/lib/fa'
 
 //Style for loader
-// const style = {
-//   paddingLeft: "50%"
-// }
-//style for buttons 
-
-const styleButton = {
-       button: {
-       borderColor: "#0ad14c",
-       backgroundColor: "#ffffff",
-       color: "#0ad14c",
-       cursor: "pointer",
-       borderWidth: ".9px",
-       borderRadius: "30px",
-       padding: "7px 25px"
-       },
+const style = {
+  paddingLeft: "50%"
 }
-
+//Style for buttons 
+const styleButton = {
+    button: {
+    borderColor: "#0ad14c",
+    backgroundColor: "#ffffff",
+    color: "#0ad14c",
+    cursor: "pointer",
+    borderWidth: ".9px",
+    borderRadius: "30px",
+    padding: "7px 25px",
+    margin: "8px"
+    },
+  }
 //style for icons
 const styleIcons = {
   button: {
@@ -43,8 +40,7 @@ const styleIcons = {
   decoration:"none",
   },
 }
-
-class Advertisements extends React.Component{
+class Slides extends React.Component{
       constructor(){
         super();
         this.state={
@@ -56,11 +52,17 @@ class Advertisements extends React.Component{
         }
     }
     //Components
-         //Handling the action buttons 
-         onHandleEdit(id) {
-          // alert("Edit record " + id);
-          this.setState({ isOpen: true })
-        }
+    componentDidMount(){
+      // this.props.fetchCategory();
+      this.props.fetchArticles();
+     
+    }
+
+     //Handling the action buttons 
+     onHandleEdit(id) {
+      // alert("Edit record " + id);
+      this.setState({ isOpen: true })
+    }
     onHandleDelete(id) {
       alert("the id got is" + id);
     }
@@ -69,28 +71,37 @@ class Advertisements extends React.Component{
       const data = [
         {
         Number: '1',
-        Summary: 'Edgars advert',
-        Picture: 'Logo.jpg',
-        Url:'www.edgars.co.za',
-        Date: 'Jun 14th 2018', 
+        Summary: 'Youth day 2018',
+        Image: 'youth.jpg',
+        Category:"Sports",
+        Status: 'Published',
+        Date: 'Jul 17th 2018', 
       }]
 
       const columns = [{
         Header: '#',
-        accessor: 'Number',
+        accessor: 'Number', // String-based value accessors!
         maxWidth:50,
       }, {
         Header: 'Summary',
         accessor: 'Summary',
+        maxWidth: 150,
       },{
-        Header: 'Advert Picture',
-        accessor:'Picture',
+        Header:'Slide picture',
+        Cell: (row) => {
+          return <div><video height={34} src={row.original.ImgPath} alt={"not suppoted"}/></div>
+        },
+        id: "picture"
       },{
-        Header: 'Url',
-        accessor: 'Url',
+          Header: 'Category',
+          accessor: 'Category'
+      },{
+        Header: 'Status',
+        accessor:'Status',
       },{
         Header: 'Date Posted',
         accessor: 'Date',
+        maxWidth: 150
       },{
           Header: 'Action',
           maxWidth:70,
@@ -101,6 +112,7 @@ class Advertisements extends React.Component{
             </div>
           )
          }]
+
         return (
           <div>
             <PanelHeader size="sm" />
@@ -109,22 +121,22 @@ class Advertisements extends React.Component{
                 <Col xs={12}>
                   <Card>
                     <CardHeader>
-                        <Row>
-                            <Col xs="6"><h4>Ads online</h4></Col>
-                        </Row>
-                                <button style={styleButton.button} onClick={() => {
-                                this.props.history.push("/admin/manage_advertisements/addadvertisements");
-                                }} round simple>Add</button>
+                      <Row>
+                          <Col xs="6"><h4>Slides online  </h4></Col>
+                       </Row>
+                            <button style={styleButton.button} onClick={() => {
+                            this.props.history.push("/admin/slide/addslide");
+                            }} round simple>Add</button>
                       </CardHeader>
                     <hr />
 
                     <CardBody>
                         <ReactTable
-                        className="-striped -highlight"
-                        defaultPageSize={5}
-                        data={data}
-                        columns={columns}
-                        />
+                              className="-striped -highlight"
+                              defaultPageSize={5}
+                              data={data}
+                              columns={columns}
+                              />
                     </CardBody>
                   </Card>
                 </Col>
@@ -135,10 +147,11 @@ class Advertisements extends React.Component{
         );
     }
 }
+
 function matchDatesToProps(state)
 {
   return{
     articles: state.articles
   }
 }
-export default connect(matchDatesToProps,actions)(Advertisements);
+export default connect(matchDatesToProps,actions)(Slides);

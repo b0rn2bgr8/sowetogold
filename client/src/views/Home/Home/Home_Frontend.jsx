@@ -92,7 +92,7 @@ class Home extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    articles: state.articles,
+    articles: state.articles.allarticles,
     categores: state.category
   }
 }

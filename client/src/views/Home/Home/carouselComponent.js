@@ -6,7 +6,7 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
-import {connect} from 'react-redux';
+//import {connect} from 'react-redux';
 
 const items = [
   {

@@ -4,13 +4,15 @@ import ReactTable from "react-table";
 import 'react-table/react-table.css'
 import {Row, Col,Card, CardHeader, CardBody,Modal,Form,ModalHeader,ModalBody,Label,Input,FormGroup,ModalFooter} from 'reactstrap';
 import { PanelHeader } from '../../components';
-import * as actions from '../../actions';
+// import * as actions from '../../actions';
+import {_fetchArticle, _fetchArticles, _deleteArticle} from "../../actions/article";
 import {connect} from 'react-redux';
 //Loading spinner
 import MDSpinner from "react-md-spinner";
-import moment from 'moment';
+import moment, { relativeTimeThreshold } from 'moment';
 //IMporting all icons from fontAwesome
 import * as FontAwesome from 'react-icons/lib/fa'
+import { fetchArticle } from '../../actions';
 
 //Style for loader
 const style = {
@@ -65,24 +67,31 @@ class Articles extends React.Component{
           article: false,
           category:false,
           author:false,
-          isOpen:false,
-          //data: makeData()
         }
         this.closeModal = this.closeModal.bind(this);
     }
     //Components
     componentDidMount(){
       // this.props.fetchCategory();
-      this.props.fetchArticles();
+      this.props._fetchArticles();
     }
 
     //Handling the action buttons 
     onHandleEdit(id) {
-      // alert("Edit record " + id);
       this.setState({ isOpen: true })
     }
     onHandleDelete(id){
-      alert("Delete record number " + id );
+      //console.log("Id deleting is " + id);
+      this.props._fetchArticle(id);//Query to the redux fetcing object data for single id
+      this.setState({ confirm: true });//Setting modal true after querying object data for single id
+    }
+
+    onDelete() {
+        this.props._deleteArticle(this.props.article._id);
+        this.setState({ confirm: !this.state.confirm }) 
+        this.props._fetchArticles();
+
+        console.log(this.props);
     }
     
     closeModal(){
@@ -93,30 +102,28 @@ class Articles extends React.Component{
 
     render(){
       const { articles } = this.props;
-      const columns = [{
+      console.log(articles)
+      const columns = [
+        {
         Header: "#",
-        id: "row",
         maxWidth:50,
         filterable:false,
         Cell:(row) => {
-          return <div>{row.index+1}</div>
+          return <div>{row.index + 1}</div>
         }
       }, {
         Header: 'Title',
         accessor: 'title',
       },{
          Header: 'Picture',
+         accessor: 'picture',
             Cell: (row) => {
-              return <div>
-                <img height={34} src={this.props.articles.picture} style={{height: 40, width: 'auto' }} alt={"not suppoted"}/>
-                </div>
+            return < img src={row.value} style={{height: '80%', width: '80%' }} alt={"not suppoted"}/>
             },
-            //id: "picture"
        },{
          Header: 'Category',
          filterable:false,
          Cell: row =>{
-           //console.log("reow", row)
             return (<div>{(()=>{
               let cnames = row.original.category.map((c)=>{
                 return c.name;
@@ -141,7 +148,7 @@ class Articles extends React.Component{
           </div>
         )
        }]
-       console.log(articles)
+    
         return (
           <div>
             <PanelHeader size="sm" />
@@ -182,7 +189,7 @@ class Articles extends React.Component{
             </div> 
             
                     {/* Modal starts here */}
-                    <Modal isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}} size="lg">
+                    <Modal  isOpen={this.state.isOpen} toggle={()=>{this.setState({ isOpen: !this.state.isOpen})}} size="lg">
                         <ModalHeader> Editing article information </ModalHeader>
                           <ModalBody>
                             <FormGroup>
@@ -217,15 +224,40 @@ class Articles extends React.Component{
                                 <button onClick={this.closeModal} style={clearButton.button} >Cancel</button>
                           </ModalFooter>
                   </Modal> 
+
+                  {/* Modal used to confirm delete */}
+                  <Modal isOpen={this.state.confirm} toggle={()=>{this.setState({ confirm: !this.state.confirm})}}>
+                  
+                        <ModalHeader>Delete confimartion</ModalHeader>
+                            <ModalBody>
+                                <p> Are you sure you want to delete <b>
+                                    { this.props.article ? 
+                                        this.props.article.title : 
+                                          <div style={style}>
+                                            <MDSpinner size="50" />
+                                          </div>} 
+                                        </b> ? 
+                                      </p>
+                            </ModalBody>
+
+                          <ModalFooter>
+                              <button style={styleButton.button} onClick={this.onDelete.bind(this)} >Yes</button>
+                              <button onClick={() => { this.setState({ confirm: !this.state.confirm }) }} style={clearButton.button} >No</button>
+                          </ModalFooter>
+                  </Modal>
               </div>
         );
     }
 }
 
-function matchDatesToProps(state)
+
+function MapStateToProps(state)//MapStateToProps
 {
   return{
-    articles: state.articles
+    articles: state.articles.allarticles,
+    article: state.articles.article,
+    respond: state.articles.respond,
   }
 }
-export default connect(matchDatesToProps,actions)(Articles);
+// export default connect(matchDatesToProps,actions)(Articles);
+export default connect(MapStateToProps,{ _fetchArticle, _fetchArticles, _deleteArticle })(Articles);
